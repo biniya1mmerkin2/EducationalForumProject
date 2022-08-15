@@ -1,2 +1,3 @@
 # EducationalForumProject
-This project is our intership project. It is about educational foru.
+
+This project is our intership project. It is about educational forum.
