@@ -1,12 +1,14 @@
-
+import NavBar from './components/navbar/navbar';
+import Forum from './components/forum/forum';
 import './App.css';
 
 function App() {
   return (
-    <div>
-      Practice makes perfect!
-      start coding now
-    </div>
+         <>
+        <NavBar/>
+        <Forum /> 
+         </>
+    
   );
 }
 
