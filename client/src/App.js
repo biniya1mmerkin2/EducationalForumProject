@@ -8,11 +8,9 @@ function App() {
          <>
         <NavBar/>
 
-        <Router>
-          <Route>
+        
             <Forum />
-          </Route>
-        </Router>
+          
          </>
     
   );
