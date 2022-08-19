@@ -3,22 +3,22 @@ import { AppBar, Typography, Button, Toolbar, Stack } from "@mui/material";
 
 const NavBar = () => {
   return (
-    <AppBar position="static" color="inherit">
+    <AppBar position="sticky" color="inherit" sx={{ background: "#1B1B1A" }}>
       <Toolbar>
         <Stack
           spacing={{ xs: 0, md: 30, lg: 40 }}
           direction={{ xs: "column", sm: "row", lg: "row" }}
         >
           <Stack direction="row">
-            <Typography variant="h5" gutterBottom>
+            <Typography variant="h4" color="white" gutterBottom>
               Educational Forum
             </Typography>
           </Stack>
           <Stack direction={{ xs: "row", sm: "row", lg: "row" }} spacing={2}>
-            <Button> Home</Button>
-            <Button> Forum</Button>
-            <Button> Members</Button>
-            <Button> Contact</Button>
+            <Button color="warning"> Home</Button>
+            <Button color="warning"> Forum</Button>
+            <Button color="warning"> Members</Button>
+            <Button color="warning"> Contact</Button>
           </Stack>
         </Stack>
       </Toolbar>

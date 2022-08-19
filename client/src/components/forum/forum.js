@@ -6,6 +6,7 @@ import {
   Stack,
   Typography,
   Grid,
+  Paper,
 } from "@mui/material";
 import { Link } from "@mui/material";
 import { Search } from "@mui/icons-material";
@@ -22,12 +23,12 @@ const Forum = () => {
           direction={{ xs: "row", sm: "row", lg: "row" }}
           m={3}
         >
-          <Link href="/" color="primary" variant="inherit" underline="hover">
+          <Link href="/" color="white" variant="inherit" underline="hover">
             Category
           </Link>
           <Link
             href="/allposts"
-            color="primary"
+            color="white"
             variant="inherit"
             underline="hover"
           >
@@ -35,7 +36,7 @@ const Forum = () => {
           </Link>
           <Link
             href="/myposts"
-            color="primary"
+            color="white"
             variant="inherit"
             underline="hover"
           >
@@ -44,15 +45,22 @@ const Forum = () => {
         </Stack>
 
         <Stack direction={{ xs: "column", sm: "row", lg: "row" }}>
-          <TextField size="small" variant="standard" label="Search" />
+          <Paper sx={{ background: "#6C3903" }}>
+            <TextField
+              size="small"
+              variant="filled"
+              color="warning"
+              label="Search"
+            />
+          </Paper>
         </Stack>
       </Stack>
 
       <Stack>
-        <Typography margin="auto" variant="h3" color="inherit">
+        <Typography margin="auto" variant="h1" color="white">
           Your Forum
         </Typography>
-        <Typography margin="auto" variant="body1" color="inherit">
+        <Typography margin="auto" variant="body1" color="white">
           Share your Question to others
         </Typography>
       </Stack>
