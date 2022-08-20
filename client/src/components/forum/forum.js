@@ -1,17 +1,10 @@
 import React from "react";
-import {
-  Container,
-  Button,
-  TextField,
-  Stack,
-  Typography,
-  Grid,
-  Paper,
-} from "@mui/material";
+import { Container, TextField, Stack, Typography, Paper } from "@mui/material";
 import { Link } from "@mui/material";
-import { Search } from "@mui/icons-material";
+import { useLocation } from "react-router-dom";
 
 const Forum = () => {
+  const { pathname } = useLocation();
   return (
     <Container maxWidth="md">
       <Stack
@@ -23,22 +16,30 @@ const Forum = () => {
           direction={{ xs: "row", sm: "row", lg: "row" }}
           m={3}
         >
-          <Link href="/" color="white" variant="inherit" underline="hover">
+          <Link
+            className="active"
+            href="/forum"
+            color={pathname !== "/forum" ? "white" : "chocolate"}
+            variant="inherit"
+            underline="none"
+          >
             Category
           </Link>
           <Link
-            href="/allposts"
-            color="white"
+            className="active"
+            href="/forum/allposts"
+            color={pathname !== "/forum/allposts" ? "white" : "chocolate"}
             variant="inherit"
-            underline="hover"
+            underline="none"
           >
             All posts
           </Link>
           <Link
-            href="/myposts"
-            color="white"
+            className="active"
+            href="/forum/myposts"
+            color={pathname !== "/forum/myposts" ? "white" : "chocolate"}
             variant="inherit"
-            underline="hover"
+            underline="none"
           >
             My posts
           </Link>

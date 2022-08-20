@@ -1,5 +1,12 @@
 import React from "react";
-import { AppBar, Typography, Button, Toolbar, Stack } from "@mui/material";
+import {
+  AppBar,
+  Typography,
+  Button,
+  Toolbar,
+  Stack,
+  Link,
+} from "@mui/material";
 
 const NavBar = () => {
   return (
@@ -14,11 +21,23 @@ const NavBar = () => {
               Educational Forum
             </Typography>
           </Stack>
-          <Stack direction={{ xs: "row", sm: "row", lg: "row" }} spacing={2}>
-            <Button color="warning"> Home</Button>
-            <Button color="warning"> Forum</Button>
-            <Button color="warning"> Members</Button>
-            <Button color="warning"> Contact</Button>
+          <Stack
+            direction={{ xs: "row", sm: "row", lg: "row" }}
+            sx={{ marginTop: 10 }}
+            spacing={2}
+          >
+            <Link href="#" underline="none" variant="inherit">
+              Home
+            </Link>
+            <Link href="#" underline="none" variant="inherit">
+              Forum
+            </Link>
+            <Link href="#" underline="none" variant="inherit">
+              Members
+            </Link>
+            <Link href="#" underline="none" variant="inherit">
+              Contact
+            </Link>
           </Stack>
         </Stack>
       </Toolbar>

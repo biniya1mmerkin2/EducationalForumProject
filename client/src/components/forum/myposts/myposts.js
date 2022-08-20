@@ -4,7 +4,9 @@ import { Container, Typography } from "@mui/material";
 const MyPosts = () => {
   return (
     <Container maxWidth="md">
-      <Typography variant="h4">My Posts Page</Typography>
+      <Typography variant="h4" color="white">
+        My Posts Page
+      </Typography>
     </Container>
   );
 };
