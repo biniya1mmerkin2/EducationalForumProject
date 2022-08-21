@@ -14,7 +14,7 @@ const Catagories = () => {
   return (
     <Container maxWidth="md">
       <Grid container spacing={3}>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -22,7 +22,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">
@@ -38,7 +38,7 @@ const Catagories = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -46,7 +46,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">
@@ -62,7 +62,7 @@ const Catagories = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -70,7 +70,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">
@@ -86,7 +86,7 @@ const Catagories = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -94,7 +94,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">
@@ -110,7 +110,7 @@ const Catagories = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -118,7 +118,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">
@@ -134,7 +134,7 @@ const Catagories = () => {
             </CardActions>
           </Card>
         </Grid>
-        <Grid item lg={4}>
+        <Grid item sm={6} md={6} lg={4} xs={12}>
           <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
             <CardMedia
               component="img"
@@ -142,7 +142,7 @@ const Catagories = () => {
               image="https://picsum.photos/200/300"
             />
             <CardContent style={{ background: "#080808" }}>
-              <Typography variant="h5" color="white">
+              <Typography className="active" variant="h5" color="white">
                 Programming
               </Typography>
               <Typography variant="body2" color="white">

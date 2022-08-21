@@ -8,13 +8,17 @@ import {
   Link,
   Container,
 } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <AppBar
       position="sticky"
       color="inherit"
       sx={{ background: "#080808", height: 150 }}
+      elevation={6}
     >
       <Toolbar>
         <Stack
@@ -23,7 +27,7 @@ const NavBar = () => {
           m={10}
         >
           <Stack direction="row">
-            <Typography variant="h3" color="white" gutterBottom>
+            <Typography variant="h4" color="white" gutterBottom>
               Educational Forum
             </Typography>
           </Stack>
@@ -32,17 +36,59 @@ const NavBar = () => {
             spacing={2}
             m={40}
           >
-            <Link href="#" underline="none" variant="inherit">
+            <Link
+              className="navlink"
+              href="/"
+              color={pathname === "/" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
               Home
             </Link>
-            <Link href="#" underline="none" variant="inherit">
+            <Link
+              className="navlink"
+              href="/forum"
+              color={pathname === "/forum" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
               Forum
             </Link>
-            <Link href="#" underline="none" variant="inherit">
+            <Link
+              className="navlink"
+              href="/members"
+              color={pathname === "/members" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
               Members
             </Link>
-            <Link href="#" underline="none" variant="inherit">
+            <Link
+              className="navlink"
+              href="/contact"
+              color={pathname === "/contact" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
               Contact
+            </Link>
+            <Link
+              className="navlink"
+              href="/contact"
+              color={pathname === "/contact" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
+              SiteRule
+            </Link>
+            <Link
+              className="navlink"
+              href="/contact"
+              color={pathname === "/contact" ? "GrayText" : "white"}
+              underline="none"
+              variant="inherit"
+            >
+              SignIn
             </Link>
           </Stack>
         </Stack>

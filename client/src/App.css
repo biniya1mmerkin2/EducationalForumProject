@@ -11,3 +11,7 @@ body {
     color: #f57c00;
 
 }
+.navlink:hover {
+    color: #b3b0ae;
+    text-decoration: none;
+}
