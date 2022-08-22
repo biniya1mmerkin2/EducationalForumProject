@@ -5,6 +5,8 @@ import Catagories from "./components/forum/catagories/catagories";
 import Allposts from "./components/forum/allposts/allposts";
 import MyPosts from "./components/forum/myposts/myposts";
 
+import Footer from "./components/footer/footer";
+
 import "./App.css";
 
 function App() {
@@ -17,6 +19,7 @@ function App() {
         <Route path="/forum/allposts" element={<Allposts />} />
         <Route path="/forum/myposts" element={<MyPosts />} />
       </Routes>
+      <Footer />
     </>
   );
 }
