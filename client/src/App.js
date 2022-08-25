@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Catagories from "./components/forum/catagories/catagories";
 import Allposts from "./components/forum/allposts/allposts";
 import MyPosts from "./components/forum/myposts/myposts";
+import PostCatagory from "./components/postcatagory/postcatagory";
 
 import Footer from "./components/footer/footer";
 
@@ -13,7 +14,11 @@ function App() {
   return (
     <>
       <NavBar />
-      <Forum />
+      <Routes>
+        <Route path="/forum" element={<Forum />} />
+        <Route path="/postCatagory" element={<PostCatagory />} />
+      </Routes>
+
       <Routes>
         <Route path="/forum" element={<Catagories />} />
         <Route path="/forum/allposts" element={<Allposts />} />

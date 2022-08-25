@@ -65,12 +65,12 @@ const NavBar = () => {
             </Link>
             <Link
               className="navlink"
-              href="/contact"
-              color={pathname === "/contact" ? "GrayText" : "white"}
+              href="/postCatagory"
+              color={pathname === "/postCatagory" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >
-              Contact
+              Post
             </Link>
             <Link
               className="navlink"
