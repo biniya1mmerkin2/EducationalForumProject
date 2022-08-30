@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -10,8 +10,16 @@ import {
   Button,
   Typography,
 } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 
 const DataTable = () => {
+  const data = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(data);
+  });
+
   return (
     <>
       <TableContainer component={Paper} elevation={6}>
@@ -34,110 +42,23 @@ const DataTable = () => {
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-          <TableBody>
-            <TableRow>
-              <TableCell>Programming </TableCell>
-              <TableCell>
-                Programming is using computer code Programming the computer{" "}
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="error">
-                  Delte
-                </Button>
-              </TableCell>
-              <TableCell>
-                <Button variant="contained" size="small" color="success">
-                  Edit
-                </Button>
-              </TableCell>
+              {data &&
+                data.map((item) => (
+                  <TableRow>
+                    <TableCell>{item.title}</TableCell>
+                    <TableCell>{item.description}</TableCell>
+                    <TableCell>
+                      <Button variant="contained" size="small" color="error">
+                        Delte
+                      </Button>
+                    </TableCell>
+                    <TableCell>
+                      <Button variant="contained" size="small" color="success">
+                        Edit
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableRow>
           </TableBody>
         </Table>

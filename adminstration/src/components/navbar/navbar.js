@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Stack from "@mui/material/Stack";
@@ -8,6 +8,9 @@ import Link from "@mui/material/Link";
 import { useLocation } from "react-router-dom";
 const NavBar = () => {
   //   const { pathname } = useLocation();
+  useEffect(() => {
+    console.log("hi am navbar");
+  });
   return (
     <AppBar
       position="sticky"
