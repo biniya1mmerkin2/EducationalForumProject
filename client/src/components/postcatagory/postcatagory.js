@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   Paper,
@@ -8,23 +8,38 @@ import {
   Button,
 } from "@mui/material";
 import Filebase from "react-file-base64";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { testRedux, testRedux1 } from "../../action/postcatagory";
+import { Connect } from "react-redux";
 
-const PostCatagory = () => {
+const PostCatagory = (props) => {
   const [catagories, setCatagories] = useState({
     title: "",
     description: "",
     selectedFile: "",
   });
-
+  const data = useSelector((state) => state.test);
+  const dispatch = useDispatch();
+  console.log(data);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(catagories);
+    dispatch(testRedux(catagories));
+    // const data = props.testRedux();
+
+    // props.testRedux1();
+
+    // console.log(catagories);
+
     setCatagories({
       title: "",
       description: "",
       selectedFile: "",
     });
   };
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <Container maxWidth={"md"}>
@@ -63,6 +78,9 @@ const PostCatagory = () => {
                 setCatagories({ ...catagories, selectedFile: base64 })
               }
             />
+            {/* <Button fullWidth variant="contained" onClick={props.testRedux}>
+              Test
+            </Button> */}
             <Button fullWidth variant="contained" onClick={handleSubmit}>
               Submit
             </Button>
@@ -75,4 +93,17 @@ const PostCatagory = () => {
   );
 };
 
+// const mapStateToProps = (state) => {
+//   return {
+//     test: state.test,
+//   };
+// };
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     testRedux: () => dispatch(testRedux()),
+//     testRedux1: () => dispatch(testRedux1()),
+//   };
+// };
+// export default connect(mapStateToProps, mapDispatchToProps)(PostCatagory);
 export default PostCatagory;
