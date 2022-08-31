@@ -22,3 +22,11 @@ export const getCatagory = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const updateCatagory = (id, post) => async (dispatch) => {
+  try {
+    await api.updateCatagory(id, post);
+  } catch (error) {
+    console.log(error);
+  }
+};

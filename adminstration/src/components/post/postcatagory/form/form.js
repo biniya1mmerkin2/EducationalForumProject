@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createCatagory, getCatagory } from "../../../../action/post";
+import { createCatagory, updateCatagory } from "../../../../action/post";
 import { Paper, Typography, TextField, Button, Stack } from "@mui/material";
 import Filebase from "react-file-base64";
 
@@ -29,7 +29,9 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
     });
   };
   const handleSubmit = () => {
-    dispatch(createCatagory(postData));
+    idToUpdate
+      ? dispatch(updateCatagory(idToUpdate, postData))
+      : dispatch(createCatagory(postData));
 
     clear();
   };

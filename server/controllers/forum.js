@@ -20,3 +20,15 @@ export const getCatagory = async (req, res) => {
     console.log(error);
   }
 };
+
+export const updateCategory = async (req, res) => {
+  const postToUpdate = req.body;
+  const para = req.params;
+  try {
+    const data = await CreateCatagory.findByIdAndUpdate(para.id, postToUpdate);
+    res.status(200).json(data);
+  } catch (error) {
+    // res.status(404).json(error);
+    console.log(error);
+  }
+};
