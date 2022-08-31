@@ -1,10 +1,12 @@
 import * as api from "../api";
-import { CREATE, FETCH_ALL } from "../constants/constants";
+import { CREATE, FETCH_ALL, ISLOADING, FINISHED } from "../constants/constants";
 
 export const createCatagory = (post) => async (dispatch) => {
   try {
+    dispatch({ type: ISLOADING });
     const { data } = await api.createCatagory(post);
     dispatch({ type: CREATE, payload: data });
+    dispatch({ type: FINISHED });
   } catch (error) {
     console.log(error);
   }
@@ -12,8 +14,10 @@ export const createCatagory = (post) => async (dispatch) => {
 
 export const getCatagory = () => async (dispatch) => {
   try {
+    dispatch({ type: ISLOADING });
     const { data } = await api.getCatagory();
     dispatch({ type: FETCH_ALL, payload: data });
+    dispatch({ type: FINISHED });
   } catch (error) {
     console.log(error);
   }

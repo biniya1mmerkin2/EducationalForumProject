@@ -4,9 +4,11 @@ import { createCatagory, getCatagory } from "../../../../action/post";
 import { Paper, Typography, TextField, Button, Stack } from "@mui/material";
 import Filebase from "react-file-base64";
 
-const Form = () => {
+const Form = ({ setIdToUpdate, idToUpdate }) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.posts);
+  const data = useSelector((state) =>
+    idToUpdate ? state.posts.find((post) => post._id === idToUpdate) : null
+  );
 
   const [postData, setpostData] = useState({
     title: "",
@@ -16,7 +18,8 @@ const Form = () => {
 
   useEffect(() => {
     console.log(data);
-  });
+    console.log(idToUpdate);
+  }, [idToUpdate]);
 
   const clear = () => {
     setpostData({

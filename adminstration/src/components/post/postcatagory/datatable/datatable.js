@@ -9,61 +9,82 @@ import {
   Paper,
   Button,
   Typography,
+  CircularProgress,
 } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
-const DataTable = () => {
-  const data = useSelector((state) => state.posts);
-  const dispatch = useDispatch();
+const DataTable = ({ setIdToUpdate }) => {
+  const { posts, isloading } = useSelector((state) => state);
 
   useEffect(() => {
-    console.log(data);
+    console.log(isloading);
   });
 
-  return (
+  return !isloading ? (
     <>
       <TableContainer component={Paper} elevation={6}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>
-                <Typography variant="h6">PostTitle</Typography>
+                <Typography variant="h6">Title</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="h6">PostDescriptions</Typography>
+                <Typography variant="h6">Descriptions</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="h6">Delete Action</Typography>
+                <Typography variant="h6">Image</Typography>
               </TableCell>
               <TableCell>
-                <Typography variant="h6">Edit Action</Typography>
+                <Typography variant="h6">Delete</Typography>
+              </TableCell>
+              <TableCell>
+                <Typography variant="h6">Edit</Typography>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              {data &&
-                data.map((item) => (
-                  <TableRow>
-                    <TableCell>{item.title}</TableCell>
-                    <TableCell>{item.description}</TableCell>
-                    <TableCell>
-                      <Button variant="contained" size="small" color="error">
-                        Delte
-                      </Button>
-                    </TableCell>
-                    <TableCell>
-                      <Button variant="contained" size="small" color="success">
-                        Edit
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-            </TableRow>
+            {posts &&
+              posts.map((item) => (
+                <TableRow key={item._id}>
+                  <TableCell>
+                    {" "}
+                    <Typography>{item.title}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{item.description}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <img
+                      src={item.selectedFile}
+                      alt={item.title}
+                      width={100}
+                      height={100}
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Button variant="contained" size="small" color="error">
+                      Delte
+                    </Button>
+                  </TableCell>
+                  <TableCell>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      color="success"
+                      onClick={setIdToUpdate(item._id)}
+                    >
+                      Edit
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
     </>
+  ) : (
+    <CircularProgress />
   );
 };
 
