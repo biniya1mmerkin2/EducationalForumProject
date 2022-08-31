@@ -30,3 +30,11 @@ export const updateCatagory = (id, post) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const deleteCatagory = (id) => async (dispatch) => {
+  try {
+    await api.deleteCategory(id);
+  } catch (error) {
+    console.log(error);
+  }
+};

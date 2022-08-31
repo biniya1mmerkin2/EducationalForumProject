@@ -32,3 +32,13 @@ export const updateCategory = async (req, res) => {
     console.log(error);
   }
 };
+
+export const deleteCategory = async (req, res) => {
+  const para = req.params;
+  try {
+    const data = await CreateCatagory.findByIdAndDelete(para.id);
+    console.log("deleted");
+  } catch (error) {
+    console.log(error);
+  }
+};

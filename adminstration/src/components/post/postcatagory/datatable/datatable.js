@@ -11,10 +11,12 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteCatagory } from "../../../../action/post";
 
 const DataTable = ({ setIdToUpdate }) => {
   const { posts, isloading } = useSelector((state) => state);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     console.log(isloading);
@@ -67,7 +69,12 @@ const DataTable = ({ setIdToUpdate }) => {
                     />
                   </TableCell>
                   <TableCell>
-                    <Button variant="contained" size="small" color="error">
+                    <Button
+                      variant="contained"
+                      size="small"
+                      color="error"
+                      onClick={() => dispatch(deleteCatagory(item._id))}
+                    >
                       Delete
                     </Button>
                   </TableCell>
