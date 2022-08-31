@@ -17,8 +17,8 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
   });
 
   useEffect(() => {
-    console.log(data);
-    console.log(idToUpdate);
+    //  ;
+    idToUpdate ? setpostData(data) : console.log("submit part");
   }, [idToUpdate]);
 
   const clear = () => {
@@ -38,7 +38,7 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
       <Stack>
         <Stack alignItems={"center"}>
           <Typography sx={{ m: 1 }} variant="h6">
-            Create Catagory
+            {idToUpdate ? " Edit Catagory" : "Create Catagory"}
           </Typography>
         </Stack>
         <TextField
@@ -71,7 +71,7 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
           />
         </Stack>
         <Button sx={{ m: 1 }} variant="contained" onClick={handleSubmit}>
-          Submit
+          {idToUpdate ? "Update" : "Submit"}
         </Button>
       </Stack>
     </Paper>

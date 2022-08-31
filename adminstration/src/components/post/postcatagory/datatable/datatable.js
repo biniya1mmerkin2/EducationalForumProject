@@ -18,7 +18,11 @@ const DataTable = ({ setIdToUpdate }) => {
 
   useEffect(() => {
     console.log(isloading);
-  });
+  }, []);
+
+  const test = (id) => {
+    console.log("test");
+  };
 
   return !isloading ? (
     <>
@@ -64,7 +68,7 @@ const DataTable = ({ setIdToUpdate }) => {
                   </TableCell>
                   <TableCell>
                     <Button variant="contained" size="small" color="error">
-                      Delte
+                      Delete
                     </Button>
                   </TableCell>
                   <TableCell>
@@ -72,7 +76,7 @@ const DataTable = ({ setIdToUpdate }) => {
                       variant="contained"
                       size="small"
                       color="success"
-                      onClick={setIdToUpdate(item._id)}
+                      onClick={() => setIdToUpdate(item._id)}
                     >
                       Edit
                     </Button>

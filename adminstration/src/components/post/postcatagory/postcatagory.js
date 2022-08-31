@@ -4,7 +4,7 @@ import Form from "./form/form";
 import DataTable from "./datatable/datatable";
 
 const PostCatagory = () => {
-  const [idToUpdate, setIdToUpdate] = useState(null);
+  const [idToUpdate, setIdToUpdate] = useState();
 
   return (
     <Container maxWidth={"lg"} sx={{ mt: 3 }}>
