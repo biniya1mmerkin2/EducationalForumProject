@@ -1,2 +1,1 @@
-export const TEST = "TEST";
-export const TESTNOT = "TESTNOT";
+export const FETCH_ALL = "FETCH_ALL";

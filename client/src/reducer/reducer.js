@@ -1,17 +1,11 @@
-import { TEST, TESTNOT } from "../constants/constants";
+import { FETCH_ALL } from "../constants/constants";
 
-const reducer = (state = { test: null }, action) => {
+const reducer = (state = { posts: [] }, action) => {
   switch (action.type) {
-    case TEST:
+    case FETCH_ALL:
       return {
         ...state,
-        test: action.payload,
-      };
-
-    case TESTNOT:
-      return {
-        ...state,
-        test: false,
+        posts: action.payload,
       };
 
     default:
