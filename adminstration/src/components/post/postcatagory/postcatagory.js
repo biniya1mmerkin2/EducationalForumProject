@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Grid, Container } from "@mui/material";
 import Form from "./form/form";
 import DataTable from "./datatable/datatable";
+import { getCatagory } from "../../../action/post";
+import { useDispatch, useSelector } from "react-redux";
 
 const PostCatagory = () => {
   const [idToUpdate, setIdToUpdate] = useState();
+  const check = useSelector((state) => state.check);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCatagory());
+  }, [check]);
 
   return (
     <Container maxWidth={"lg"} sx={{ mt: 3 }}>

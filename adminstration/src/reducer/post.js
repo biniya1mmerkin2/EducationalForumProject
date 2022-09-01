@@ -1,7 +1,14 @@
-import { CREATE, FETCH_ALL, ISLOADING, FINISHED } from "../constants/constants";
+import {
+  CREATE,
+  FETCH_ALL,
+  ISLOADING,
+  FINISHED,
+  UPDATEDDATA,
+  UPDATENULL,
+} from "../constants/constants";
 
 const postcatagory = (
-  state = { posts: [null], post: [], isloading: true },
+  state = { posts: [null], post: [], isloading: true, check: null },
   action
 ) => {
   switch (action.type) {
@@ -13,6 +20,11 @@ const postcatagory = (
       return { ...state, isloading: true };
     case FINISHED:
       return { ...state, isloading: false };
+
+    case UPDATEDDATA:
+      return { ...state, check: 1 };
+    case UPDATENULL:
+      return { ...state, check: null };
 
     default:
       return state;

@@ -18,17 +18,10 @@ const DataTable = ({ setIdToUpdate }) => {
   const { posts, isloading } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(isloading);
-  }, []);
-
-  const test = (id) => {
-    console.log("test");
-  };
 
   return !isloading ? (
     <>
-      <TableContainer component={Paper} elevation={6}>
+      <TableContainer component={Paper} elevation={6} sx={{ height: 500 }}>
         <Table>
           <TableHead>
             <TableRow>

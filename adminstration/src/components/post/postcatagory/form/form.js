@@ -19,6 +19,7 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
   useEffect(() => {
     //  ;
     idToUpdate ? setpostData(data) : console.log("submit part");
+    
   }, [idToUpdate]);
 
   const clear = () => {
