@@ -17,9 +17,7 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
   });
 
   useEffect(() => {
-    //  ;
     idToUpdate ? setpostData(data) : console.log("submit part");
-    
   }, [idToUpdate]);
 
   const clear = () => {
@@ -35,6 +33,7 @@ const Form = ({ setIdToUpdate, idToUpdate }) => {
       : dispatch(createCatagory(postData));
 
     clear();
+    setIdToUpdate(null);
   };
   return (
     <Paper sx={{ ml: 5 }} elevation={6}>
