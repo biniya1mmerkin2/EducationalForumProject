@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 const Forum = () => {
   const { pathname } = useLocation();
   return (
-    <Container maxWidth="lg" sx={{ height: 300 }}>
+    <Container maxWidth="lg">
       <Stack
         spacing={{ xs: 0, sm: 70, lg: 80 }}
         direction={{ xs: "column", sm: "row", lg: "row", xl: "row" }}

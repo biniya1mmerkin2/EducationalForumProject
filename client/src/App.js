@@ -8,6 +8,7 @@ import MyPosts from "./components/forum/myposts/myposts";
 import { getCategory } from "./action/getCatagory";
 import { useDispatch } from "react-redux";
 import Footer from "./components/footer/footer";
+import CatagoryDetails from "./components/forum/catagoryDetail/catagorydetail";
 import "./App.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
       <Routes>
         <Route path="/forum" element={<Forum />} />
+        <Route path="/forum/Catagory/:id" element={<CatagoryDetails />} />
       </Routes>
 
       <Routes>
