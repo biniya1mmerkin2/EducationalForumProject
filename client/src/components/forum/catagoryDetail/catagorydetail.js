@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Typography, Stack } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import DataDisplay from "../data/datadisplay";
 
 const CatagoryDetails = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const CatagoryDetails = () => {
           src={posts.selectedFile}
           alt={posts.title}
           height="300"
-          style={{ position: "relative", zIndex: "-100" }}
+          className="img-zindex"
         />
       </Stack>
       <Stack>
@@ -27,7 +28,7 @@ const CatagoryDetails = () => {
           top={200}
           left={"20%"}
           variant="h1"
-          zIndex={2}
+          className="text-zindex"
         >
           {posts.title}
         </Typography>
@@ -38,11 +39,13 @@ const CatagoryDetails = () => {
           left={"20%"}
           right={"20%"}
           variant="h6"
-          zIndex={5}
+          className="text-zindex"
         >
           {posts.description}
         </Typography>
       </Stack>
+
+      <DataDisplay />
     </Container>
   );
 };
