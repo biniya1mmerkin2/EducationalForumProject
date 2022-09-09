@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Typography,
   Box,
@@ -9,6 +9,8 @@ import {
   InputAdornment,
   IconButton,
   InputLabel,
+  Modal,
+  FormControl,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 const style = {
@@ -22,57 +24,91 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
-const SignUp = () => {
+const SignUp = ({ open, setOpen }) => {
+  const [showpassword, setshowpassword] = useState(false);
+  const [isSignUp, setisSignUp] = useState(true);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleShowPassword = () => {
+    setshowpassword(!showpassword);
+  };
+
   return (
-    <Box sx={style}>
-      <Stack>
-        <Stack justifyContent={"center"} alignItems="center">
-          <Typography
-            gutterBottom
-            fontWeight={"bold"}
-            variant="h4"
-            color="chocolate"
-          >
-            Sign Up
-          </Typography>
+    <Modal open={open} onClose={handleClose}>
+      <Box sx={style}>
+        <Stack>
+          <Stack justifyContent={"center"} alignItems="center">
+            <Typography
+              gutterBottom
+              fontWeight={"bold"}
+              variant="h4"
+              color="chocolate"
+            >
+              {isSignUp ? " Sign Up" : "Sign In"}
+            </Typography>
+          </Stack>
+          {isSignUp && (
+            <Stack direction={"row"} spacing={2}>
+              <TextField label="First Name" name="firstname" />
+              <TextField label="Last Name" name="lastname" />
+            </Stack>
+          )}
+          <Stack mt={1}>
+            <TextField label="Email" name="email" sx={{ mb: 1 }} />
+            <FormControl variant="outlined" sx={{ mb: 1 }}>
+              <InputLabel htmlFor="password1">Password</InputLabel>
+              <OutlinedInput
+                id="password1"
+                type={showpassword ? "text" : "password"}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="show password"
+                      edge="end"
+                      onClick={handleShowPassword}
+                    >
+                      {showpassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
+            {isSignUp && (
+              <FormControl variant="outlined" sx={{ mb: 1 }}>
+                <InputLabel htmlFor="password2">ConfirmPassword</InputLabel>
+                <OutlinedInput
+                  id="password2"
+                  type={showpassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="show password"
+                        edge="end"
+                        onClick={handleShowPassword}
+                      >
+                        {showpassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
+            )}
+
+            <Button
+              variant="contained"
+              color="warning"
+              fullWidth
+              onClick={() => setisSignUp(!isSignUp)}
+            >
+              {isSignUp ? "Submit" : "Login"}
+            </Button>
+          </Stack>
         </Stack>
-        <Stack direction={"row"} spacing={2}>
-          <TextField label="First Name" name="firstname" />
-          <TextField label="Last Name" name="lastname" />
-        </Stack>
-        <Stack mt={1}>
-          <TextField label="Email" name="email" sx={{ mb: 1 }} />
-          <TextField
-            type={"password"}
-            label="Password"
-            name="password"
-            sx={{ mb: 1 }}
-          />
-          <TextField
-            type={"password"}
-            label="ConfirmPassword"
-            name="confirmpassword"
-            sx={{ mb: 1 }}
-          />
-          <InputLabel htmlFor="password">Password</InputLabel>
-          <OutlinedInput
-            id="password"
-            type="password"
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton aria-label="show password" edge="end">
-                  <VisibilityOff />
-                </IconButton>
-              </InputAdornment>
-            }
-            // label="Enterpassword"
-          />
-          <Button variant="contained" color="warning" fullWidth>
-            Submit
-          </Button>
-        </Stack>
-      </Stack>
-    </Box>
+      </Box>
+    </Modal>
   );
 };
 export default SignUp;
