@@ -33,38 +33,32 @@ const Catagories = () => {
           {posts.map((item) => (
             <Grid item sm={12} md={6} lg={6} xs={12} key={item._id}>
               <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={item.selectedFile}
-                  />
-                  <CardContent style={{ background: "#080808" }}>
-                    <Typography
-                      className="active"
-                      variant="h5"
-                      color="chocolate"
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      color="white"
-                      sx={{
-                        height: 50,
-                        overflow: "hidden",
-                      }}
-                    >
-                      {item.description}
-                    </Typography>
-                  </CardContent>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={item.selectedFile}
+                />
+                <CardContent style={{ background: "#080808" }}>
+                  <Typography className="active" variant="h5" color="chocolate">
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    color="white"
+                    sx={{
+                      height: 50,
+                      overflow: "hidden",
+                    }}
+                  >
+                    {item.description}
+                  </Typography>
+                </CardContent>
 
-                  <CardActions style={{ background: "#080808" }}>
-                    <IconButton onClick={() => handleClick(item._id)}>
-                      <ArrowForwardIcon color="warning" />
-                    </IconButton>
-                  </CardActions>
-                </CardActionArea>
+                <CardActions style={{ background: "#080808" }}>
+                  <IconButton onClick={() => handleClick(item._id)}>
+                    <ArrowForwardIcon color="warning" />
+                  </IconButton>
+                </CardActions>
               </Card>
             </Grid>
           ))}
