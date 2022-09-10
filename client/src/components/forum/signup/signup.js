@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Validator from "validator";
 import {
   Typography,
   Box,
@@ -26,7 +27,35 @@ const style = {
 };
 const SignUp = ({ open, setOpen }) => {
   const [showpassword, setshowpassword] = useState(false);
+  const [formdata, setformdata] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+  const [validEmail, setValidEmail] = useState("");
+  const [validData, setvalidData] = useState();
+  const [message, setmessage] = useState("");
   const [isSignUp, setisSignUp] = useState(true);
+
+  const handleSubmit = () => {
+    if (formdata.password === formdata.confirmpassword) {
+      setvalidData({
+        firstName: formdata.firstName,
+        lastName: formdata.lastName,
+        email: formdata.email,
+        password: formdata.password,
+      });
+      console.log(validData);
+    } else {
+      setmessage("your passwords not match");
+      console.log(message);
+    }
+
+    if (Validator.isEmail(formdata.email)) return console.log("valid email");
+    return console.log("not valid email");
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -52,17 +81,44 @@ const SignUp = ({ open, setOpen }) => {
           </Stack>
           {isSignUp && (
             <Stack direction={"row"} spacing={2}>
-              <TextField label="First Name" name="firstname" />
-              <TextField label="Last Name" name="lastname" />
+              <TextField
+                label="First Name"
+                name="firstname"
+                value={formdata.firstName}
+                onChange={(e) =>
+                  setformdata({ ...formdata, firstName: e.target.value })
+                }
+              />
+              <TextField
+                label="Last Name"
+                name="lastname"
+                value={formdata.lastName}
+                onChange={(e) =>
+                  setformdata({ ...formdata, lastName: e.target.value })
+                }
+              />
             </Stack>
           )}
           <Stack mt={1}>
-            <TextField label="Email" name="email" sx={{ mb: 1 }} />
+            <TextField
+              label="Email"
+              name="email"
+              helperText={!validEmail ? "" : validEmail}
+              sx={{ mb: 1 }}
+              value={formdata.email}
+              onChange={(e) =>
+                setformdata({ ...formdata, email: e.target.value })
+              }
+            />
             <FormControl variant="outlined" sx={{ mb: 1 }}>
               <InputLabel htmlFor="password1">Password</InputLabel>
               <OutlinedInput
                 id="password1"
                 type={showpassword ? "text" : "password"}
+                value={formdata.password}
+                onChange={(e) =>
+                  setformdata({ ...formdata, password: e.target.value })
+                }
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -82,6 +138,13 @@ const SignUp = ({ open, setOpen }) => {
                 <OutlinedInput
                   id="password2"
                   type={showpassword ? "text" : "password"}
+                  value={formdata.confirmpassword}
+                  onChange={(e) =>
+                    setformdata({
+                      ...formdata,
+                      confirmpassword: e.target.value,
+                    })
+                  }
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
@@ -96,12 +159,15 @@ const SignUp = ({ open, setOpen }) => {
                 />
               </FormControl>
             )}
+            <Typography variant="caption" color="red">
+              {message ? message : ""}
+            </Typography>
 
             <Button
               variant="contained"
               color="warning"
               fullWidth
-              onClick={() => setisSignUp(!isSignUp)}
+              onClick={handleSubmit}
             >
               {isSignUp ? "Submit" : "Login"}
             </Button>
