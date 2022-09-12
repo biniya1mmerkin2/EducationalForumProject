@@ -12,6 +12,7 @@ import {
   InputLabel,
   Modal,
   FormControl,
+  Link,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 const style = {
@@ -36,31 +37,46 @@ const SignUp = ({ open, setOpen }) => {
   });
   const [validEmail, setValidEmail] = useState("");
   const [validData, setvalidData] = useState();
-  const [message, setmessage] = useState("");
-  const [isSignUp, setisSignUp] = useState(true);
+  const [passwordValidation, setpasswordValidation] = useState("");
+  const [isSignUp, setisSignUp] = useState(false);
 
+  //submit handler
   const handleSubmit = () => {
-    if (formdata.password === formdata.confirmpassword) {
-      setvalidData({
-        firstName: formdata.firstName,
-        lastName: formdata.lastName,
-        email: formdata.email,
-        password: formdata.password,
-      });
-      console.log(validData);
-    } else {
-      setmessage("your passwords not match");
-      console.log(message);
-    }
+    if (isSignUp) {
+      if (
+        formdata.password === formdata.confirmpassword &&
+        Validator.isEmail(formdata.email)
+      ) {
+        setvalidData({
+          firstName: formdata.firstName,
+          lastName: formdata.lastName,
+          email: formdata.email,
+          password: formdata.password,
+        });
 
-    if (Validator.isEmail(formdata.email)) return console.log("valid email");
-    return console.log("not valid email");
+        setpasswordValidation("");
+        setValidEmail("");
+
+        console.log(validData);
+      }
+      if (!Validator.isEmail(formdata.email)) {
+        setValidEmail("Please, enter valid email!");
+        setpasswordValidation("");
+      }
+      if (formdata.password !== formdata.confirmpassword) {
+        setpasswordValidation("your passwords not match");
+        setValidEmail("");
+      }
+    } else {
+    }
   };
 
+  //close the modal
   const handleClose = () => {
     setOpen(false);
   };
 
+  //handle show password icon
   const handleShowPassword = () => {
     setshowpassword(!showpassword);
   };
@@ -103,13 +119,15 @@ const SignUp = ({ open, setOpen }) => {
             <TextField
               label="Email"
               name="email"
-              helperText={!validEmail ? "" : validEmail}
               sx={{ mb: 1 }}
               value={formdata.email}
               onChange={(e) =>
                 setformdata({ ...formdata, email: e.target.value })
               }
             />
+            <Typography variant="caption" color="red">
+              {!validEmail ? "" : validEmail}
+            </Typography>
             <FormControl variant="outlined" sx={{ mb: 1 }}>
               <InputLabel htmlFor="password1">Password</InputLabel>
               <OutlinedInput
@@ -160,7 +178,7 @@ const SignUp = ({ open, setOpen }) => {
               </FormControl>
             )}
             <Typography variant="caption" color="red">
-              {message ? message : ""}
+              {passwordValidation ? passwordValidation : ""}
             </Typography>
 
             <Button
@@ -171,6 +189,27 @@ const SignUp = ({ open, setOpen }) => {
             >
               {isSignUp ? "Submit" : "Login"}
             </Button>
+            {!isSignUp && (
+              <Link
+                href="/forgetpassword"
+                className="active"
+                variant="inherit"
+                underline="none"
+                color="#000000"
+                marginLeft={8}
+              >
+                forgetpassword?
+              </Link>
+            )}
+            {!isSignUp && (
+              <Button
+                color="warning"
+                className="active"
+                onClick={() => setisSignUp(!isSignUp)}
+              >
+                {isSignUp ? "Create new Account" : "Login"}
+              </Button>
+            )}
           </Stack>
         </Stack>
       </Box>
