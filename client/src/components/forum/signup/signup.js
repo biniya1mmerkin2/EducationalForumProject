@@ -95,6 +95,7 @@ const SignUp = ({ open, setOpen }) => {
               {isSignUp ? " Sign Up" : "Sign In"}
             </Typography>
           </Stack>
+
           {isSignUp && (
             <Stack direction={"row"} spacing={2}>
               <TextField
@@ -115,6 +116,7 @@ const SignUp = ({ open, setOpen }) => {
               />
             </Stack>
           )}
+
           <Stack mt={1}>
             <TextField
               label="Email"
@@ -125,9 +127,11 @@ const SignUp = ({ open, setOpen }) => {
                 setformdata({ ...formdata, email: e.target.value })
               }
             />
+
             <Typography variant="caption" color="red">
               {!validEmail ? "" : validEmail}
             </Typography>
+
             <FormControl variant="outlined" sx={{ mb: 1 }}>
               <InputLabel htmlFor="password1">Password</InputLabel>
               <OutlinedInput
@@ -150,6 +154,7 @@ const SignUp = ({ open, setOpen }) => {
                 }
               />
             </FormControl>
+
             {isSignUp && (
               <FormControl variant="outlined" sx={{ mb: 1 }}>
                 <InputLabel htmlFor="password2">ConfirmPassword</InputLabel>
@@ -177,6 +182,7 @@ const SignUp = ({ open, setOpen }) => {
                 />
               </FormControl>
             )}
+
             <Typography variant="caption" color="red">
               {passwordValidation ? passwordValidation : ""}
             </Typography>
@@ -189,6 +195,7 @@ const SignUp = ({ open, setOpen }) => {
             >
               {isSignUp ? "Submit" : "Login"}
             </Button>
+
             {!isSignUp && (
               <Link
                 href="/forgetpassword"
@@ -201,15 +208,15 @@ const SignUp = ({ open, setOpen }) => {
                 forgetpassword?
               </Link>
             )}
-            {!isSignUp && (
-              <Button
-                color="warning"
-                className="active"
-                onClick={() => setisSignUp(!isSignUp)}
-              >
-                {isSignUp ? "Create new Account" : "Login"}
-              </Button>
-            )}
+
+            <Button
+              color="warning"
+              className="active"
+              size="small"
+              onClick={() => setisSignUp(!isSignUp)}
+            >
+              {!isSignUp ? "Create new Account" : "Login"}
+            </Button>
           </Stack>
         </Stack>
       </Box>
