@@ -9,7 +9,6 @@ import {
   Grid,
   IconButton,
   CircularProgress,
-  CardActionArea,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useSelector } from "react-redux";
@@ -18,7 +17,8 @@ import { useNavigate } from "react-router-dom";
 import NewPost from "../newpost/newpost";
 
 const Catagories = () => {
-  const { posts, isloading } = useSelector((state) => state);
+  const { posts, isloading } = useSelector((state) => state.reducer);
+
   const navigate = useNavigate();
 
   const handleClick = (id) => {

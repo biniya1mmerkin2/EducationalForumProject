@@ -15,6 +15,10 @@ import {
   Link,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { signUp, signIn } from "../../../action/user";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const style = {
   position: "absolute",
   top: "50%",
@@ -27,6 +31,9 @@ const style = {
   p: 4,
 };
 const SignUp = ({ open, setOpen }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const [showpassword, setshowpassword] = useState(false);
   const [formdata, setformdata] = useState({
     firstName: "",
@@ -57,7 +64,15 @@ const SignUp = ({ open, setOpen }) => {
         setpasswordValidation("");
         setValidEmail("");
 
-        console.log(validData);
+        dispatch(signUp(validData));
+        setformdata({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          confirmpassword: "",
+        });
+        handleClose();
       }
       if (!Validator.isEmail(formdata.email)) {
         setValidEmail("Please, enter valid email!");
@@ -68,6 +83,15 @@ const SignUp = ({ open, setOpen }) => {
         setValidEmail("");
       }
     } else {
+      dispatch(
+        signIn(
+          { email: formdata.email, password: formdata.password },
+          navigate,
+          id
+        )
+      );
+      setformdata("");
+      handleClose();
     }
   };
 

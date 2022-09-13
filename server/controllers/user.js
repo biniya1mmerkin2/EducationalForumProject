@@ -12,7 +12,7 @@ export const signup = async (req, res) => {
         .json({ message: "user exists with this email change the email" });
     const hashedpassword = await bycrypt.hash(password, 12);
     const result = await User.create({
-      name: `${firstName}${lastName}`,
+      name: `${firstName}${" "}${lastName}`,
       email: email,
       password: hashedpassword,
     });

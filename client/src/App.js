@@ -13,9 +13,12 @@ import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("userdata"));
   useEffect(() => {
     dispatch(getCategory());
   });
+
+  useEffect(() => {}, [user]);
   return (
     <>
       <NavBar />

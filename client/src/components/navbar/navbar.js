@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   AppBar,
   Typography,
@@ -6,13 +6,14 @@ import {
   Toolbar,
   Stack,
   Link,
-  Container,
+  Avatar,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
+  const user = JSON.parse(localStorage.getItem("userdata"));
+
   return (
     <AppBar
       position="sticky"
@@ -22,7 +23,7 @@ const NavBar = () => {
     >
       <Toolbar>
         <Stack
-          spacing={{ xs: 0, md: 30, lg: 40 }}
+          spacing={{ xs: 0, md: 60, lg: 70 }}
           direction={{ xs: "column", sm: "row", lg: "row" }}
           m={10}
         >
@@ -63,15 +64,7 @@ const NavBar = () => {
             >
               Members
             </Link>
-            <Link
-              className="navlink"
-              href="/postCatagory"
-              color={pathname === "/postCatagory" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              Post
-            </Link>
+
             <Link
               className="navlink"
               href="/contact"
@@ -79,17 +72,16 @@ const NavBar = () => {
               underline="none"
               variant="inherit"
             >
-              SiteRule
+              SignUp
             </Link>
-            <Link
-              className="navlink"
-              href="/contact"
-              color={pathname === "/contact" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              SignIn
-            </Link>
+
+            {user && (
+              <Stack direction="row">
+                <Avatar sx={{ background: "#f57c00" }}>
+                  {user?.result?.name.charAt(0).toUpperCase()}
+                </Avatar>{" "}
+              </Stack>
+            )}
           </Stack>
         </Stack>
       </Toolbar>
