@@ -1,1 +1,17 @@
+body {
+    background: #080808;
+}
 
+.active:hover {
+    color: #f57c00;
+    text-decoration: none;
+}
+
+.custom-link {
+    color: #f57c00;
+
+}
+.navlink:hover {
+    color: #b3b0ae;
+    text-decoration: none;
+}
