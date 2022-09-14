@@ -9,6 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
+import image from "../../images/logo2.jpg";
 
 const NavBar = () => {
   const { pathname } = useLocation();
@@ -23,19 +24,19 @@ const NavBar = () => {
     >
       <Toolbar>
         <Stack
-          spacing={{ xs: 0, md: 60, lg: 70 }}
+          spacing={{ md: 45, lg: 75 }}
           direction={{ xs: "column", sm: "row", lg: "row" }}
-          m={10}
+          mt={10}
+          mb={10}
+          ml={5}
         >
           <Stack direction="row">
-            <Typography variant="h4" color="white" gutterBottom>
-              Educational Forum
-            </Typography>
+            <img src={image} alt="logo" width={250} height={70} />
           </Stack>
           <Stack
             direction={{ xs: "row", sm: "row", lg: "row" }}
             spacing={2}
-            m={40}
+            mt={40}
           >
             <Link
               className="navlink"

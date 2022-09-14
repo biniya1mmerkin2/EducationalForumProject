@@ -9,16 +9,16 @@ import { getCategory } from "./action/getCatagory";
 import { useDispatch } from "react-redux";
 import Footer from "./components/footer/footer";
 import CatagoryDetails from "./components/forum/catagoryDetail/catagorydetail";
+import ForgetPassword from "./components/forum/reset/forgetpassword";
 import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("userdata"));
+
   useEffect(() => {
     dispatch(getCategory());
   });
 
-  useEffect(() => {}, [user]);
   return (
     <>
       <NavBar />
@@ -26,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/Catagory/:id" element={<CatagoryDetails />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
       </Routes>
 
       <Routes>
