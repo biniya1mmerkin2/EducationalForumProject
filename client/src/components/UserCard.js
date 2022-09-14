@@ -74,7 +74,7 @@ export default function UserCard(props){
                             </Box>
                         </Box>
                         <Box paddingX={3} padding={1} sx={{display:'flex', gap:'5px'}}>
-                        <Button variant="contained" size='small'sx={{backgroundColor:'#ec5218', width:'30px', borderRadius:'0px', width:'75%', color:'black', fontSize:'large', fontWeight:'400'}} >{users.followstatus?'Unfollow':'Follow'}</Button>
+                        <Button variant="contained" size='small'sx={{backgroundColor:'#ec5218', width:'30px', borderRadius:'0px', width:'75%', color:'black', fontSize:'large', fontWeight:'400'}} >{props.followstatus?'Unfollow':'Follow'}</Button>
                         <Button variant="contained" size='small' sx={{backgroundColor:'#ec5218', width:'30px', borderRadius:'0px', width:'50px', fontSize:'25px', color:'black'}}><FontAwesomeIcon icon={faMessage} /></Button>
                         </Box>
                         
