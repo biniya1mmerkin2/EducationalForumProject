@@ -1,14 +1,16 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "educationforumprojectserver",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "group1",
+  "author": "wanofi",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "^2.0.19"
+    "cors": "^2.8.5"
   }
 }
