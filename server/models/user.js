@@ -8,6 +8,8 @@ const userSchema = mongoose.Schema({
   following: { type: [String], default: [] },
   university: { type: String, default: "" },
   profilePic: String,
+  passwordresettoken: String,
+  passwordtokenexpiredata: Date,
 });
 
 const User = mongoose.model("userData", userSchema);

@@ -2,6 +2,7 @@ import bycrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 import nodemailer from "nodemailer";
+import jwt_decode from "jwt-decode";
 
 export const signup = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -56,6 +57,17 @@ export const forgetPassword = async (req, res) => {
     if (!existinguser)
       return res.status(404).json("user with this email number is not found!");
 
+    const token = jwt.sign({ email: email }, process.env.SECRET, {
+      expiresIn: "50000",
+    });
+
+    const update = await User.updateOne(
+      { email: email },
+      {
+        passwordresettoken: token,
+        passwordtokenexpiredata: Date.now() + 30000,
+      }
+    );
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -71,7 +83,7 @@ export const forgetPassword = async (req, res) => {
       text:
         "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
         "Please click on the following link, or paste this into your browser to complete the process within 1 hour of receiving this message.\n\n" +
-        `http://localhost:3000/forgetpassword\n\n` +
+        `http://localhost:3000/forgetpassword/${token}\n\n` +
         "If you didn`t requested this, Please ignore this email and your password will remain unchanged.\n",
     };
 
@@ -79,9 +91,31 @@ export const forgetPassword = async (req, res) => {
       if (error) {
         res.status(404).json(error);
       } else {
-        res.status(200).json(info);
+        res.status(200).json(token);
       }
     });
+  } catch (error) {
+    res.status(404).json(error);
+  }
+};
+
+export const checktoken = async (req, res) => {
+  const { token } = req.body;
+  try {
+    const { email, exp } = jwt_decode(token);
+    const expiration = new Date(exp).getMilliseconds();
+    const currenttime = new Date().getMilliseconds();
+
+    if (expiration < currenttime)
+      return res.status(200).json("Your token is expired!");
+    if (expiration === currenttime)
+      return res.status(200).json("your token is expired!");
+    res.status(200).json("session is active");
+
+    // const date = Date(exp);
+
+    // console.log(currenttime);
+    // res.status(200).json(expiration);
   } catch (error) {
     res.status(404).json(error);
   }

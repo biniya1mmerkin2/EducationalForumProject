@@ -9,7 +9,7 @@ import {
   Avatar,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import image from "../../images/logo2.jpg";
+import image from "../../images/logo3.png";
 
 const NavBar = () => {
   const { pathname } = useLocation();
