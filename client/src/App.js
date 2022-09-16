@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import Footer from "./components/footer/footer";
 import CatagoryDetails from "./components/forum/catagoryDetail/catagorydetail";
 import ForgetPassword from "./components/forum/reset/forgetpassword";
+import ResetPassword from "./components/forum/reset/resetpassword";
 import "./App.css";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/Catagory/:id" element={<CatagoryDetails />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/forgetpassword/:token" element={<ResetPassword />} />
       </Routes>
 
       <Routes>

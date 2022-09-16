@@ -31,7 +31,7 @@ const NavBar = () => {
           ml={5}
         >
           <Stack direction="row">
-            <img src={image} alt="logo" width={250} height={70} />
+            <img src={image} alt="logo" width={250} height={80} />
           </Stack>
           <Stack
             direction={{ xs: "row", sm: "row", lg: "row" }}

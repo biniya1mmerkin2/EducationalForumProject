@@ -55,7 +55,10 @@ export const forgetPassword = async (req, res) => {
   try {
     const existinguser = await User.findOne({ email });
     if (!existinguser)
-      return res.status(404).json("user with this email number is not found!");
+      return res.status(200).json({
+        message: "user with this email number is not found!",
+        status: false,
+      });
 
     const token = jwt.sign({ email: email }, process.env.SECRET, {
       expiresIn: "20000",
@@ -89,9 +92,11 @@ export const forgetPassword = async (req, res) => {
 
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
-        res.status(404).json(error);
+        res.status(404).json({ message: error, status: false });
       } else {
-        res.status(200).json(token);
+        res
+          .status(200)
+          .json({ message: "Check your email now!", status: true });
       }
     });
   } catch (error) {
@@ -112,15 +117,18 @@ export const checktoken = async (req, res) => {
     });
 
     if (result === null)
-      return res.status(404).json("Your session is expired resend request!");
+      return res.status(200).json({
+        message: `Please,${email} Your session is expired resend request!`,
+        status: false,
+      });
 
     const hashedpassword = await bycrypt.hash(password, 12);
-    const updatedpassword = await User.updateOne(
-      { email: email },
-      { password: hashedpassword }
-    );
+    await User.updateOne({ email: email }, { password: hashedpassword });
 
-    res.status(200).json(updatedpassword);
+    res.status(200).json({
+      message: `${email} your request is successfully finished!`,
+      status: true,
+    });
   } catch (error) {
     res.status(404).json({ message: error });
   }

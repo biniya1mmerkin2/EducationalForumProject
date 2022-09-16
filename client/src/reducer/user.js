@@ -1,6 +1,15 @@
-import { SIGNIN, ISLOADING, FINISHED } from "../constants/constants";
+import {
+  SIGNIN,
+  ISLOADING,
+  FINISHED,
+  MESSAGE,
+  REMOVEMESSAGE,
+} from "../constants/constants";
 
-const user = (state = { userData: [], isloading: false }, action) => {
+const user = (
+  state = { userData: [], isloading: false, message: "" },
+  action
+) => {
   switch (action.type) {
     case SIGNIN:
       localStorage.setItem("userdata", JSON.stringify({ ...action?.payload }));
@@ -10,6 +19,11 @@ const user = (state = { userData: [], isloading: false }, action) => {
 
     case FINISHED:
       return { ...state, isloading: false };
+
+    case MESSAGE:
+      return { ...state, message: action.payload };
+    case REMOVEMESSAGE:
+      return { ...state, message: "" };
     default:
       return state;
   }
