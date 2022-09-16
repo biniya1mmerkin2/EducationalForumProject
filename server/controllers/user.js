@@ -58,14 +58,14 @@ export const forgetPassword = async (req, res) => {
       return res.status(404).json("user with this email number is not found!");
 
     const token = jwt.sign({ email: email }, process.env.SECRET, {
-      expiresIn: "50000",
+      expiresIn: "20000",
     });
 
     const update = await User.updateOne(
       { email: email },
       {
         passwordresettoken: token,
-        passwordtokenexpiredata: Date.now() + 30000,
+        passwordtokenexpiredata: Date.now() + 120000,
       }
     );
     var transporter = nodemailer.createTransport({
@@ -82,7 +82,7 @@ export const forgetPassword = async (req, res) => {
       subject: "Password Reset Link",
       text:
         "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
-        "Please click on the following link, or paste this into your browser to complete the process within 1 hour of receiving this message.\n\n" +
+        "Please click on the following link, or paste this into your browser to complete the process within 2 minute of receiving this message.\n\n" +
         `http://localhost:3000/forgetpassword/${token}\n\n` +
         "If you didn`t requested this, Please ignore this email and your password will remain unchanged.\n",
     };
@@ -100,23 +100,28 @@ export const forgetPassword = async (req, res) => {
 };
 
 export const checktoken = async (req, res) => {
-  const { token } = req.body;
+  const { token } = req.params;
+  const { password } = req.body;
   try {
-    const { email, exp } = jwt_decode(token);
-    const expiration = new Date(exp).getMilliseconds();
-    const currenttime = new Date().getMilliseconds();
+    const { email } = jwt_decode(token);
 
-    if (expiration < currenttime)
-      return res.status(200).json("Your token is expired!");
-    if (expiration === currenttime)
-      return res.status(200).json("your token is expired!");
-    res.status(200).json("session is active");
+    const result = await User.findOne({
+      email: email,
+      passwordresettoken: token,
+      passwordtokenexpiredata: { $gt: Date.now() },
+    });
 
-    // const date = Date(exp);
+    if (result === null)
+      return res.status(404).json("Your session is expired resend request!");
 
-    // console.log(currenttime);
-    // res.status(200).json(expiration);
+    const hashedpassword = await bycrypt.hash(password, 12);
+    const updatedpassword = await User.updateOne(
+      { email: email },
+      { password: hashedpassword }
+    );
+
+    res.status(200).json(updatedpassword);
   } catch (error) {
-    res.status(404).json(error);
+    res.status(404).json({ message: error });
   }
 };
