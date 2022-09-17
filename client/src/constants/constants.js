@@ -5,3 +5,5 @@ export const SIGNUP = "SIGNUP";
 export const SIGNIN = "SIGNIN";
 export const MESSAGE = "MESSAGE";
 export const REMOVEMESSAGE = "REMOVEMESSAGE";
+export const BUTTONLOADING = "BUTTONLOADING";
+export const BUTTONLOADINGFINISHED = "BUTTONLOADINGFINISHED";

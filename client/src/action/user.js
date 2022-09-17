@@ -5,6 +5,8 @@ import {
   FINISHED,
   MESSAGE,
   REMOVEMESSAGE,
+  BUTTONLOADING,
+  BUTTONLOADINGFINISHED,
 } from "../constants/constants";
 
 export const signUp = (userdata) => async (dispatch) => {
@@ -32,10 +34,10 @@ export const signIn = (userdata, navigate, id) => async (dispatch) => {
 
 export const sendEmailToUser = (userdata) => async (dispatch) => {
   try {
-    dispatch({ type: ISLOADING });
+    dispatch({ type: BUTTONLOADING });
     dispatch({ type: REMOVEMESSAGE });
     const { data } = await sendEmail(userdata);
-    dispatch({ type: FINISHED });
+    dispatch({ type: BUTTONLOADINGFINISHED });
     dispatch({ type: MESSAGE, payload: data });
   } catch (error) {
     console.log(error);
@@ -44,10 +46,10 @@ export const sendEmailToUser = (userdata) => async (dispatch) => {
 
 export const sendPasswordReset = (datavalue, token) => async (dispatch) => {
   try {
-    dispatch({ type: ISLOADING });
+    dispatch({ type: BUTTONLOADING });
     dispatch({ type: REMOVEMESSAGE });
     const data = await resetPassword(datavalue, token);
-    dispatch({ type: FINISHED });
+    dispatch({ type: BUTTONLOADINGFINISHED });
     dispatch({ type: MESSAGE, payload: data });
   } catch (error) {
     console.log(error);

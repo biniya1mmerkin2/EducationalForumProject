@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Stack,
   Container,
@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 const ForgetPassword = () => {
   const [email, setEmail] = useState({ email: "", validity: true });
   const dispatch = useDispatch();
-  const { isloading, message } = useSelector((state) => state.user);
+  const { buttonloading, message } = useSelector((state) => state.user);
+  const data = useSelector((state) => state.user);
 
   const handleClick = () => {
     if (!validator.isEmail(email.email))
@@ -42,17 +43,15 @@ const ForgetPassword = () => {
               onChange={(e) => setEmail({ ...email, email: e.target.value })}
             />
 
-            <Stack direction="row" spacing={1}>
-              <Button
-                variant="contained"
-                color="warning"
-                sx={{ mt: 1, mb: 1 }}
-                onClick={handleClick}
-                fullWidth
-              >
-                {isloading ? <CircularProgress color="inherit" /> : "Send"}
-              </Button>
-            </Stack>
+            <Button
+              variant="contained"
+              color="warning"
+              sx={{ mt: 1, mb: 1 }}
+              onClick={handleClick}
+              fullWidth
+            >
+              {!buttonloading ? "Send" : <CircularProgress color="inherit" />}
+            </Button>
 
             <Typography color="red">
               {email.validity ? "" : "Please,enter valid email!"}

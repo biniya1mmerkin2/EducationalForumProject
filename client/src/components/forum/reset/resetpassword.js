@@ -26,7 +26,7 @@ const ResetPassword = () => {
   const [showpassword, setshowpassword] = useState(false);
   const dispatch = useDispatch();
   const { token } = useParams();
-  const { isloading, message } = useSelector((state) => state.user);
+  const { buttonloading, message } = useSelector((state) => state.user);
   const handleShowPassword = () => {
     setshowpassword(!showpassword);
   };
@@ -108,7 +108,7 @@ const ResetPassword = () => {
                 sx={{ mt: 1, mb: 1 }}
                 onClick={handleClick}
               >
-                {isloading ? <CircularProgress /> : "Rest"}
+                {buttonloading ? <CircularProgress /> : "Rest"}
               </Button>
               <Typography color="red">
                 {!formdata.message ? "" : formdata.message}

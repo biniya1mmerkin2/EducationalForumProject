@@ -68,7 +68,7 @@ export const forgetPassword = async (req, res) => {
       { email: email },
       {
         passwordresettoken: token,
-        passwordtokenexpiredata: Date.now() + 120000,
+        passwordtokenexpiredata: Date.now() + 600000,
       }
     );
     var transporter = nodemailer.createTransport({
@@ -106,7 +106,9 @@ export const forgetPassword = async (req, res) => {
 
 export const checktoken = async (req, res) => {
   const { token } = req.params;
-  const { password } = req.body;
+  const data = req.body;
+  console.log(data.password);
+
   try {
     const { email } = jwt_decode(token);
 
@@ -122,8 +124,15 @@ export const checktoken = async (req, res) => {
         status: false,
       });
 
-    const hashedpassword = await bycrypt.hash(password, 12);
-    await User.updateOne({ email: email }, { password: hashedpassword });
+    const hashedpassword = await bycrypt.hash(data.password, 12);
+    const updated = await User.updateOne(
+      { email: email },
+      { $set: { password: hashedpassword } }
+    );
+    if (!updated)
+      return res
+        .status(200)
+        .json({ message: "error in the server", status: false });
 
     res.status(200).json({
       message: `${email} your request is successfully finished!`,

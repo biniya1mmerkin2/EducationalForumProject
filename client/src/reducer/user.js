@@ -4,10 +4,12 @@ import {
   FINISHED,
   MESSAGE,
   REMOVEMESSAGE,
+  BUTTONLOADING,
+  BUTTONLOADINGFINISHED,
 } from "../constants/constants";
 
 const user = (
-  state = { userData: [], isloading: false, message: "" },
+  state = { userData: [], isloading: false, message: "", buttonloading: false },
   action
 ) => {
   switch (action.type) {
@@ -24,6 +26,10 @@ const user = (
       return { ...state, message: action.payload };
     case REMOVEMESSAGE:
       return { ...state, message: "" };
+    case BUTTONLOADING:
+      return { ...state, buttonloading: true };
+    case BUTTONLOADINGFINISHED:
+      return { ...state, buttonloading: false };
     default:
       return state;
   }
