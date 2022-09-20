@@ -13,6 +13,7 @@ import ForgetPassword from "./components/forum/reset/forgetpassword";
 import ResetPassword from "./components/forum/reset/resetpassword";
 import "./App.css";
 import PersonalData from "./components/forum/MyProfile/personal";
+import { getUsers } from "./action/user";
 
 function App() {
   const dispatch = useDispatch();

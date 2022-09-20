@@ -1,4 +1,10 @@
-import { signin, signup, sendEmail, resetPassword } from "../api/api";
+import {
+  signin,
+  signup,
+  sendEmail,
+  resetPassword,
+  getAllUser,
+} from "../api/api";
 import {
   SIGNIN,
   ISLOADING,
@@ -7,6 +13,7 @@ import {
   REMOVEMESSAGE,
   BUTTONLOADING,
   BUTTONLOADINGFINISHED,
+  GETALLUSER,
 } from "../constants/constants";
 
 export const signUp = (userdata) => async (dispatch) => {
@@ -27,6 +34,17 @@ export const signIn = (userdata, navigate, id) => async (dispatch) => {
 
     dispatch({ type: FINISHED });
     navigate(`/forum/Catagory/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: ISLOADING });
+    const { data } = await getAllUser();
+    dispatch({ type: GETALLUSER, payload: data });
+    dispatch({ type: FINISHED });
   } catch (error) {
     console.log(error);
   }

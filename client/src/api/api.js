@@ -9,3 +9,4 @@ export const sendEmail = (data) =>
   axios.post(`${url}/user/forgetpassword`, data);
 export const resetPassword = (data, token) =>
   axios.post(`${url}/user/forgetpassword/${token}`, data);
+  export const getAllUser = () => axios.get(`${url}/user`);

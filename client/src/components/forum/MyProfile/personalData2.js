@@ -4,8 +4,7 @@ import {
   Typography,
   Card,
   CardContent,
-  Button,
-  Avatar,
+
 } from "@mui/material";
 const PersonalData2 = () => {
   return (
