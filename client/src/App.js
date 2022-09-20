@@ -12,6 +12,7 @@ import CatagoryDetails from "./components/forum/catagoryDetail/catagorydetail";
 import ForgetPassword from "./components/forum/reset/forgetpassword";
 import ResetPassword from "./components/forum/reset/resetpassword";
 import "./App.css";
+import PersonalData from "./components/forum/MyProfile/personal";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
         <Route path="/forum/Catagory/:id" element={<CatagoryDetails />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/forgetpassword/:token" element={<ResetPassword />} />
+        <Route path="/profile" element={<PersonalData />} />
       </Routes>
 
       <Routes>

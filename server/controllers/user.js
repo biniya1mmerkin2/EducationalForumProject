@@ -10,7 +10,7 @@ export const signup = async (req, res) => {
     const existinguser = await User.findOne({ email });
     if (existinguser)
       return res
-        .status(400)
+        .status(200)
         .json({ message: "user exists with this email change the email" });
     const hashedpassword = await bycrypt.hash(password, 12);
     const result = await User.create({
@@ -107,7 +107,8 @@ export const forgetPassword = async (req, res) => {
 export const checktoken = async (req, res) => {
   const { token } = req.params;
   const data = req.body;
-  console.log(data.password);
+  
+  
 
   try {
     const { email } = jwt_decode(token);
@@ -141,4 +142,4 @@ export const checktoken = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error });
   }
-};
+};;

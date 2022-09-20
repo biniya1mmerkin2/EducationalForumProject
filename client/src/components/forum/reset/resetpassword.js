@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendPasswordReset } from "../../../action/user";
 import { useParams } from "react-router-dom";
 const ResetPassword = () => {
-  const [password, setPassword] = useState({ password: "" });
+  const [password, setPassword] = useState({});
   const [formdata, setFormData] = useState({
     password: "",
     confirmpassword: "",
@@ -35,11 +35,10 @@ const ResetPassword = () => {
     if (formdata.confirmpassword !== formdata.password)
       return setFormData({
         ...formdata,
-        message: "Confirm the Password Please!",
+        message: "Please,match your password first!",
       });
 
-    setPassword({ ...password, password: formdata.password });
-    dispatch(sendPasswordReset(password, token));
+    dispatch(sendPasswordReset(formdata, token));
     setFormData({ password: "", confirmpassword: "", message: "" });
   };
   return (

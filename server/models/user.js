@@ -7,6 +7,7 @@ const userSchema = mongoose.Schema({
   followers: { type: [String], default: [] },
   following: { type: [String], default: [] },
   university: { type: String, default: "" },
+  joindate: { type: Date, default: Date.now() },
   profilePic: String,
   passwordresettoken: String,
   passwordtokenexpiredata: Date,

@@ -1,19 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
-  Typography,
-  Button,
   Toolbar,
   Stack,
   Link,
   Avatar,
+  IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
-import image from "../../images/logo3.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import image from "../../images/log.jpg";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+  const [anchorEl, setanchorEl] = useState(null);
   const { pathname } = useLocation();
   const user = JSON.parse(localStorage.getItem("userdata"));
+
+  const handleMenu = (e) => {
+    setanchorEl(e.currentTarget);
+  };
+
+  const handleClose = () => {
+    setanchorEl(null);
+  };
+
+  const handleLogOut = () => {
+    localStorage.removeItem("userdata");
+    navigate("/forum");
+    setanchorEl(null);
+  };
+
+  const handleProfile = () => {
+    navigate("/profile");
+    setanchorEl(null);
+  };
 
   return (
     <AppBar
@@ -38,51 +60,66 @@ const NavBar = () => {
             spacing={2}
             mt={40}
           >
-            <Link
-              className="navlink"
-              href="/"
-              color={pathname === "/" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              Home
-            </Link>
-            <Link
-              className="navlink"
-              href="/forum"
-              color={pathname === "/forum" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              Forum
-            </Link>
-            <Link
-              className="navlink"
-              href="/members"
-              color={pathname === "/members" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              Members
-            </Link>
+            <Stack direction="row" mt="20px" spacing={1}>
+              <Link
+                className="navlink"
+                href="/"
+                color={pathname === "/" ? "GrayText" : "white"}
+                underline="none"
+                variant="inherit"
+              >
+                Home
+              </Link>
+              <Link
+                className="navlink"
+                href="/forum"
+                color={pathname === "/forum" ? "GrayText" : "white"}
+                underline="none"
+                variant="inherit"
+              >
+                Forum
+              </Link>
+              <Link
+                className="navlink"
+                href="/members"
+                color={pathname === "/members" ? "GrayText" : "white"}
+                underline="none"
+                variant="inherit"
+              >
+                Members
+              </Link>
 
-            <Link
-              className="navlink"
-              href="/contact"
-              color={pathname === "/contact" ? "GrayText" : "white"}
-              underline="none"
-              variant="inherit"
-            >
-              SignUp
-            </Link>
-
-            {user && (
-              <Stack direction="row">
-                <Avatar sx={{ background: "#f57c00" }}>
-                  {user?.result?.name.charAt(0).toUpperCase()}
-                </Avatar>{" "}
-              </Stack>
-            )}
+              <Link
+                className="navlink"
+                href="/contact"
+                color={pathname === "/contact" ? "GrayText" : "white"}
+                underline="none"
+                variant="inherit"
+              >
+                SignUp
+              </Link>
+            </Stack>
+            <Stack>
+              {user?.result && (
+                <IconButton onClick={handleMenu} size="small" sx={{ mt: 1 }}>
+                  <Avatar sx={{ background: "#f57c00" }}>
+                    {user?.result?.name.charAt(0).toUpperCase()}
+                  </Avatar>{" "}
+                </IconButton>
+              )}
+              <Menu
+                id="profile"
+                anchorEl={anchorEl}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                keepMounted
+                transformOrigin={{ vertical: "top", horizontal: "right" }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleProfile}>Profile</MenuItem>
+                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+              </Menu>
+            </Stack>
           </Stack>
         </Stack>
       </Toolbar>
