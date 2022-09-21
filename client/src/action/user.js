@@ -14,28 +14,43 @@ import {
   BUTTONLOADING,
   BUTTONLOADINGFINISHED,
   GETALLUSER,
+  SETERROR,
+  REMOVEERROR,
 } from "../constants/constants";
 
 export const signUp = (userdata) => async (dispatch) => {
   try {
-    const data = await signup(userdata);
-    console.log(data);
+    dispatch({ type: BUTTONLOADING });
+    dispatch({ type: REMOVEERROR });
+    const { data } = await signup(userdata);
+    dispatch({ type: MESSAGE, payload: data.message });
+    dispatch({ type: BUTTONLOADINGFINISHED });
   } catch (error) {
     console.log(error);
+    dispatch({ type: SETERROR, payload: error.message + " please,try again!" });
+    dispatch({ type: BUTTONLOADINGFINISHED });
   }
 };
 
 export const signIn = (userdata, navigate, id) => async (dispatch) => {
   try {
-    dispatch({ type: ISLOADING });
+    dispatch({ type: BUTTONLOADING });
+    dispatch({ type: REMOVEERROR });
     const { data } = await signin(userdata);
+    dispatch({ type: BUTTONLOADINGFINISHED });
+    if (!data?.result)
+      return dispatch({
+        type: MESSAGE,
+        payload: "You typed wrong email and password!",
+      });
 
     dispatch({ type: SIGNIN, payload: data });
+    dispatch({ type: MESSAGE, payload: "signin successfuly!" });
 
-    dispatch({ type: FINISHED });
     navigate(`/forum/Catagory/${id}`);
   } catch (error) {
     console.log(error);
+    dispatch({ type: SETERROR, payload: error.message });
   }
 };
 

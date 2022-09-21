@@ -7,6 +7,8 @@ import {
   BUTTONLOADING,
   BUTTONLOADINGFINISHED,
   GETALLUSER,
+  SETERROR,
+  REMOVEERROR,
 } from "../constants/constants";
 
 const user = (
@@ -16,6 +18,7 @@ const user = (
     message: "",
     buttonloading: false,
     allUser: [],
+    error: "",
   },
   action
 ) => {
@@ -39,6 +42,10 @@ const user = (
       return { ...state, buttonloading: false };
     case GETALLUSER:
       return { ...state, allUser: action.payload };
+    case SETERROR:
+      return { ...state, error: action.payload };
+    case REMOVEERROR:
+      return { ...state, error: "" };
     default:
       return state;
   }

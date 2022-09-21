@@ -13,12 +13,15 @@ import {
   Modal,
   FormControl,
   Link,
+  Alert,
+  CircularProgress,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signUp, signIn } from "../../../action/user";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { REMOVEERROR, REMOVEMESSAGE } from "../../../constants/constants";
 const style = {
   position: "absolute",
   top: "50%",
@@ -47,6 +50,8 @@ const SignUp = ({ open, setOpen }) => {
   const [passwordValidation, setpasswordValidation] = useState("");
   const [isSignUp, setisSignUp] = useState(false);
 
+  const { buttonloading, message, error } = useSelector((state) => state.user);
+
   //submit handler
   const handleSubmit = () => {
     if (isSignUp) {
@@ -72,7 +77,6 @@ const SignUp = ({ open, setOpen }) => {
           password: "",
           confirmpassword: "",
         });
-        handleClose();
       }
       if (!Validator.isEmail(formdata.email)) {
         setValidEmail("Please, enter valid email!");
@@ -90,14 +94,21 @@ const SignUp = ({ open, setOpen }) => {
           id
         )
       );
-      setformdata("");
-      handleClose();
+      setformdata({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmpassword: "",
+      });
     }
   };
 
   //close the modal
   const handleClose = () => {
     setOpen(false);
+    dispatch({ type: REMOVEERROR });
+    dispatch({ type: REMOVEMESSAGE });
   };
 
   //handle show password icon
@@ -118,6 +129,18 @@ const SignUp = ({ open, setOpen }) => {
             >
               {isSignUp ? " Sign Up" : "Sign In"}
             </Typography>
+            {message !== "" ? (
+              <Alert severity={!message?.status ? "warning" : "success"}>
+                {message}
+              </Alert>
+            ) : (
+              ""
+            )}
+            {error !== "" ? (
+              <Alert severity="error">{error ? error : ""}</Alert>
+            ) : (
+              ""
+            )}
           </Stack>
 
           {isSignUp && (
@@ -217,7 +240,17 @@ const SignUp = ({ open, setOpen }) => {
               fullWidth
               onClick={handleSubmit}
             >
-              {isSignUp ? "Submit" : "Login"}
+              {isSignUp ? (
+                buttonloading ? (
+                  <CircularProgress />
+                ) : (
+                  "Rgistere"
+                )
+              ) : buttonloading ? (
+                <CircularProgress />
+              ) : (
+                "Login"
+              )}
             </Button>
 
             {!isSignUp && (

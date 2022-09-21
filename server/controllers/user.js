@@ -11,7 +11,10 @@ export const signup = async (req, res) => {
     if (existinguser)
       return res
         .status(200)
-        .json({ message: "user exists with this email change the email" });
+        .json({
+          message: "user exists with this email change the email",
+          state: false,
+        });
     const hashedpassword = await bycrypt.hash(password, 12);
     const result = await User.create({
       name: `${firstName}${" "}${lastName}`,
@@ -22,7 +25,9 @@ export const signup = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ result, token });
+    res
+      .status(200)
+      .json({ message: "User Successfuly Registered", state: true });
   } catch (error) {
     res.status(500).json(error);
   }
