@@ -1,23 +1,21 @@
-import React from "react";
-import {
-  AppBar,
-  Typography,
-  Button,
-  Toolbar,
-  Stack,
-  Link,
-  Container,
-} from "@mui/material";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 
+import { useLocation } from "react-router-dom";
 const NavBar = () => {
-  const { pathname } = useLocation();
-  console.log(pathname);
+  //   const { pathname } = useLocation();
+  useEffect(() => {
+    console.log("hi am navbar");
+  });
   return (
     <AppBar
       position="sticky"
       color="inherit"
-      sx={{ background: "#080808", height: 150 }}
+      sx={{ background: "#F3F4F0", height: 150 }}
       elevation={6}
     >
       <Toolbar>
@@ -27,8 +25,8 @@ const NavBar = () => {
           m={10}
         >
           <Stack direction="row">
-            <Typography variant="h4" color="white" gutterBottom>
-              Educational Forum
+            <Typography variant="h4" gutterBottom>
+              Educational Forum Admin Panal
             </Typography>
           </Stack>
           <Stack
@@ -39,7 +37,6 @@ const NavBar = () => {
             <Link
               className="navlink"
               href="/"
-              color={pathname === "/" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >
@@ -47,17 +44,15 @@ const NavBar = () => {
             </Link>
             <Link
               className="navlink"
-              href="/forum"
-              color={pathname === "/forum" ? "GrayText" : "white"}
+              href="/post"
               underline="none"
               variant="inherit"
             >
-              Forum
+              Post
             </Link>
             <Link
               className="navlink"
               href="/members"
-              color={pathname === "/members" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >
@@ -66,7 +61,6 @@ const NavBar = () => {
             <Link
               className="navlink"
               href="/postCatagory"
-              color={pathname === "/postCatagory" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >
@@ -75,7 +69,6 @@ const NavBar = () => {
             <Link
               className="navlink"
               href="/contact"
-              color={pathname === "/contact" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >
@@ -84,7 +77,6 @@ const NavBar = () => {
             <Link
               className="navlink"
               href="/contact"
-              color={pathname === "/contact" ? "GrayText" : "white"}
               underline="none"
               variant="inherit"
             >

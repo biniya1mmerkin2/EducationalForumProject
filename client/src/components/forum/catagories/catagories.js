@@ -8,164 +8,74 @@ import {
   CardContent,
   Grid,
   IconButton,
+  CircularProgress,
+  CardActionArea,
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import NewPost from "../newpost/newpost";
 
 const Catagories = () => {
-  return (
+  const { posts, isloading } = useSelector((state) => state);
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/forum/Catagory/${id}`);
+    console.log(id);
+  };
+
+  return !isloading ? (
     <>
       <Container maxWidth="md">
         <Grid container spacing={3}>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item sm={6} md={6} lg={4} xs={12}>
-            <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/200/300"
-              />
-              <CardContent style={{ background: "#080808" }}>
-                <Typography className="active" variant="h5" color="chocolate">
-                  Programming
-                </Typography>
-                <Typography variant="body2" color="white">
-                  Computer programming is the process of performing a particular
-                  computation, usually by designing and building an executable
-                  computer program.
-                </Typography>
-              </CardContent>
-              <CardActions style={{ background: "#080808" }}>
-                <IconButton>
-                  <ArrowForwardIcon color="warning" />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
+          {posts.map((item) => (
+            <Grid item sm={12} md={6} lg={6} xs={12} key={item._id}>
+              <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    height="140"
+                    image={item.selectedFile}
+                  />
+                  <CardContent style={{ background: "#080808" }}>
+                    <Typography
+                      className="active"
+                      variant="h5"
+                      color="chocolate"
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="white"
+                      sx={{
+                        height: 50,
+                        overflow: "hidden",
+                      }}
+                    >
+                      {item.description}
+                    </Typography>
+                  </CardContent>
+
+                  <CardActions style={{ background: "#080808" }}>
+                    <IconButton onClick={() => handleClick(item._id)}>
+                      <ArrowForwardIcon color="warning" />
+                    </IconButton>
+                  </CardActions>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Container>
       <NewPost />
     </>
+  ) : (
+    <Container maxWidth="md">
+      <CircularProgress />
+    </Container>
   );
 };
 

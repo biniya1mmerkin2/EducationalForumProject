@@ -13,9 +13,9 @@ import { useLocation } from "react-router-dom";
 const Forum = () => {
   const { pathname } = useLocation();
   return (
-    <Container maxWidth="lg" sx={{ height: 300 }}>
+    <Container maxWidth="lg">
       <Stack
-        spacing={{ xs: 0, sm: 30, lg: 80 }}
+        spacing={{ xs: 0, sm: 70, lg: 80 }}
         direction={{ xs: "column", sm: "row", lg: "row", xl: "row" }}
       >
         <Stack
@@ -60,6 +60,7 @@ const Forum = () => {
               variant="filled"
               color="warning"
               label="Search"
+              fullWidth
             />
           </Box>
 
@@ -68,7 +69,7 @@ const Forum = () => {
       </Stack>
       <Divider sx={{ background: "#FBFBEC" }} />
 
-      <Stack>
+      <Stack justifyContent={"flex-end"} alignItems={"center"}>
         <Typography margin="auto" variant="h2" color="white">
           Your Forum
         </Typography>
