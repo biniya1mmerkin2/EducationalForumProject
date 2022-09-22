@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Typography,
   TableContainer,
   Table,
   TableHead,
@@ -13,8 +12,19 @@ import {
   Divider,
   Link,
 } from "@mui/material";
+import SignUp from "../signup/signup";
+import { useNavigate } from "react-router-dom";
 
 const DataDisplay = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("userdata"));
+
+  const handleOpen = () => setOpen(true);
+  const handleNavigate = () => {
+    navigate("/forum");
+  };
+
   return (
     <Container
       maxWidth="lg"
@@ -27,7 +37,13 @@ const DataDisplay = () => {
     >
       <Stack direction={"row"} justifyContent="flex-end" m={1}>
         <Stack direction={"row"}>
-          <Button variant="contained" color="warning">
+          <Button
+            variant="contained"
+            color="warning"
+            onClick={() => {
+              !user ? handleOpen() : handleNavigate();
+            }}
+          >
             {" "}
             Create New Post
           </Button>
@@ -406,6 +422,7 @@ const DataDisplay = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <SignUp open={open} setOpen={setOpen} />
     </Container>
   );
 };

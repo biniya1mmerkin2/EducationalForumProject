@@ -29,3 +29,12 @@ body {
 .control-overflow {
     overflow: hidden;
 }
+
+.textfield {
+    background-color: white;
+    color: rgb(235, 225, 225);
+}
+
+.file {
+    height: 20%;
+}
