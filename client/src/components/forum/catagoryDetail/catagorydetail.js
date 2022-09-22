@@ -7,7 +7,7 @@ import DataDisplay from "../data/datadisplay";
 const CatagoryDetails = () => {
   const { id } = useParams();
   const posts = useSelector((state) =>
-    state.posts.find((item) => item._id === id)
+    state.reducer.posts.find((item) => item._id === id)
   );
 
   console.log(posts);

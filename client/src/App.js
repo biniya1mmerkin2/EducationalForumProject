@@ -9,13 +9,21 @@ import { getCategory } from "./action/getCatagory";
 import { useDispatch } from "react-redux";
 import Footer from "./components/footer/footer";
 import CatagoryDetails from "./components/forum/catagoryDetail/catagorydetail";
+import ForgetPassword from "./components/forum/reset/forgetpassword";
+import ResetPassword from "./components/forum/reset/resetpassword";
 import "./App.css";
+import PersonalData from "./components/forum/MyProfile/personal";
+import { getUsers } from "./action/user";
+import Members from "./components/forum/members/members";
+import MembersIndex from "./components/forum/members";
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCategory());
   });
+
   return (
     <>
       <NavBar />
@@ -23,6 +31,10 @@ function App() {
       <Routes>
         <Route path="/forum" element={<Forum />} />
         <Route path="/forum/Catagory/:id" element={<CatagoryDetails />} />
+        <Route path="/forgetpassword" element={<ForgetPassword />} />
+        <Route path="/forgetpassword/:token" element={<ResetPassword />} />
+        <Route path="/profile" element={<PersonalData />} />
+        <Route path="/members" element={<MembersIndex />} />
       </Routes>
 
       <Routes>
