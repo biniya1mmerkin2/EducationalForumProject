@@ -8,7 +8,9 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Divider,
 } from "@mui/material";
+import { ExpandMoreOutlined } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import image from "../../images/log.jpg";
 
@@ -46,7 +48,7 @@ const NavBar = () => {
     >
       <Toolbar>
         <Stack
-          spacing={{ md: 45, lg: 75 }}
+          spacing={{ md: 45, lg: 90 }}
           direction={{ xs: "column", sm: "row", lg: "row" }}
           mt={10}
           mb={10}
@@ -105,6 +107,7 @@ const NavBar = () => {
                   <Avatar sx={{ background: "#f57c00" }}>
                     {user?.result?.name.charAt(0).toUpperCase()}
                   </Avatar>{" "}
+                  <ExpandMoreOutlined color="warning" />
                 </IconButton>
               )}
               <Menu
@@ -116,8 +119,14 @@ const NavBar = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleProfile}>Profile</MenuItem>
-                <MenuItem onClick={handleLogOut}>Logout</MenuItem>
+                <MenuItem className="active" onClick={handleProfile}>
+                  Profile
+                </MenuItem>
+
+                <Divider />
+                <MenuItem className="active" onClick={handleLogOut}>
+                  Logout
+                </MenuItem>
               </Menu>
             </Stack>
           </Stack>

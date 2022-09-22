@@ -242,12 +242,12 @@ const SignUp = ({ open, setOpen }) => {
             >
               {isSignUp ? (
                 buttonloading ? (
-                  <CircularProgress />
+                  <CircularProgress color="inherit" />
                 ) : (
                   "Rgistere"
                 )
               ) : buttonloading ? (
-                <CircularProgress />
+                <CircularProgress color="inherit" />
               ) : (
                 "Login"
               )}

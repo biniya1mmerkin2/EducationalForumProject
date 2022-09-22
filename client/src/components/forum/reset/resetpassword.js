@@ -107,7 +107,7 @@ const ResetPassword = () => {
                 sx={{ mt: 1, mb: 1 }}
                 onClick={handleClick}
               >
-                {buttonloading ? <CircularProgress /> : "Rest"}
+                {buttonloading ? <CircularProgress color="inherit" /> : "Rest"}
               </Button>
               <Typography color="red">
                 {!formdata.message ? "" : formdata.message}

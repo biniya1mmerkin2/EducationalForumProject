@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Stack, Typography, Container } from "@mui/material";
+import { Stack, Container, Grid } from "@mui/material";
 
 import PersonData from "./personData";
 import PersonalData2 from "./personalData2";
@@ -19,12 +19,13 @@ const PersonalData = () => {
     dispatch(getUsers());
   }, []);
   return (
-    <Container sx={{ mt: 3 }}>
+    <Container sx={{ mt: 3, height: "100%" }}>
       <Stack direction="row" spacing={2}>
         <Stack>
           <PersonData result={users} />
           <PersonalData2 result={result} />
         </Stack>
+
         <Stack>
           <PersonDetail result={users} />
         </Stack>

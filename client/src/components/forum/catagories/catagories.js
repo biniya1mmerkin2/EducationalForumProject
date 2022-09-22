@@ -68,7 +68,7 @@ const Catagories = () => {
     </>
   ) : (
     <Container maxWidth="md">
-      <CircularProgress />
+      <CircularProgress color="warning" />
     </Container>
   );
 };
