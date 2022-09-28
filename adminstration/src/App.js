@@ -8,6 +8,7 @@ import PostCatagory from "./components/post/postcatagory/postcatagory";
 
 import "./App.css";
 import Members from "./components/post/members/members";
+import MembersDetail from "./components/post/members/membersdetail";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/post" element={<PostCatagory />} />
         <Route path="/members" element={<Members />} />
+        <Route path="/members/:id" element={<MembersDetail />} />
       </Routes>
     </>
   );

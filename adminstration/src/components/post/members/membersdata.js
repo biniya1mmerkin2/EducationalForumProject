@@ -15,12 +15,17 @@ import {
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../../action/user";
+import { useNavigate } from "react-router-dom";
 
 const MembersData = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { members, isloading } = useSelector((state) => state.members);
   console.log(members);
 
+  const handleClick = (id) => {
+    navigate(`/members/${id}`);
+  };
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
@@ -83,7 +88,12 @@ const MembersData = () => {
                   </TableCell>
 
                   <TableCell>
-                    <Button variant="outlined" size="small" color="warning">
+                    <Button
+                      variant="outlined"
+                      size="small"
+                      color="warning"
+                      onClick={() => handleClick(item._id)}
+                    >
                       View More
                     </Button>
                   </TableCell>
