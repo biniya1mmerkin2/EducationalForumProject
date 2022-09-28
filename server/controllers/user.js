@@ -120,8 +120,6 @@ export const forgetPassword = async (req, res) => {
 export const checktoken = async (req, res) => {
   const { token } = req.params;
   const data = req.body;
-  
-  
 
   try {
     const { email } = jwt_decode(token);
@@ -155,4 +153,16 @@ export const checktoken = async (req, res) => {
   } catch (error) {
     res.status(404).json({ message: error });
   }
-};;
+};
+
+export const updateUserInfo = async (req, res) => {
+  const userdata = req.body;
+  const param = req.params;
+
+  try {
+    const data = await User.findByIdAndUpdate(param.id, userdata);
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

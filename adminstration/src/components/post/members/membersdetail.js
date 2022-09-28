@@ -32,7 +32,12 @@ const MembersDetail = () => {
               </Typography>
             </Stack>
             <Stack>
-              <img src={Image} alt="defaultprofile" width={100} height={100} />
+              <img
+                src={item.profilePic === null ? { Image } : item.profilePic}
+                alt="defaultprofile"
+                width={100}
+                height={100}
+              />
               <Stack direction="row" spacing={1} mt="10px">
                 <Stack spacing={1}>
                   <Button variant="contained" size="small" color="success">

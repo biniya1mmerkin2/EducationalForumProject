@@ -9,14 +9,28 @@ import {
   Box,
 } from "@mui/material";
 import Filebase from "react-file-base64";
+import { useDispatch } from "react-redux";
+import { updateuserinfoaction } from "../../../action/user";
 
 const PersonDetail = ({ result }) => {
+  const dispatch = useDispatch();
   const [test, setTest] = useState(true);
-  const [editUni, setEditUni] = useState(false);
-  const [editphone, seteditphoe] = useState(false);
-  const [profile, setprofile] = useState(false);
+  // const [editUni, setEditUni] = useState(false);
+  // const [editphone, seteditphoe] = useState(false);
+  // const [profile, setprofile] = useState(false);
+  const [data, setdata] = useState({
+    university: "",
+    phonenumber: "",
+    profilePic: "",
+  });
   const handleClick = () => {
     setTest(!test);
+  };
+
+  const handleUpdate = (id) => {
+    console.log(data);
+    dispatch(updateuserinfoaction(data, id));
+    setdata({ university: "", phonenumber: "", profilePic: "" });
   };
   return (
     <Container maxWidth="xl" sx={{ border: 0.5, borderColor: "#ffffff" }}>
@@ -67,7 +81,11 @@ const PersonDetail = ({ result }) => {
                 >
                   Discard
                 </Button>
-                <Button variant="contained" color="warning">
+                <Button
+                  variant="contained"
+                  color="warning"
+                  onClick={() => handleUpdate(item._id)}
+                >
                   Update info
                 </Button>
               </Stack>
@@ -119,50 +137,57 @@ const PersonDetail = ({ result }) => {
             <Stack>
               <Box margin="30px">
                 <Stack margin="10px" direction="row" spacing={1}>
-                  <Button
-                    variant="outlined"
-                    color="warning"
-                    onClick={() => setEditUni(!editUni)}
-                  >
+                  <Button variant="outlined" color="warning">
                     Add University
                   </Button>
                 </Stack>
-                {editUni && (
+                {!test && (
                   <Stack margin="10px">
                     <TextField
                       className="textfield"
                       color="warning"
                       placeholder="University"
+                      value={data.university}
+                      onChange={(e) =>
+                        setdata({ ...data, university: e.target.value })
+                      }
                     />
                   </Stack>
                 )}
                 <Stack margin="10px" direction="row" spacing={1}>
-                  <Button
-                    variant="outlined"
-                    color="warning"
-                    onClick={() => seteditphoe(!editphone)}
-                  >
+                  <Button variant="outlined" color="warning">
                     Add Phone
                   </Button>
                 </Stack>
-                {editphone && (
+                {!test && (
                   <Stack margin="10px">
                     <TextField
                       className="textfield"
                       color="warning"
                       placeholder="Phone Number"
+                      value={data.phonenumber}
+                      onChange={(e) =>
+                        setdata({
+                          ...data,
+                          phonenumber: e.target.value,
+                        })
+                      }
                     />
                   </Stack>
                 )}
                 <Stack margin="10px" direction="row" spacing={1}>
-                  <Button
-                    variant="outlined"
-                    color="warning"
-                    onClick={() => setprofile(!profile)}
-                  >
+                  <Button variant="outlined" color="warning">
                     Change Profile
                   </Button>
-                  {profile && <Filebase type="file" mutiple={false} />}
+                  {!test && (
+                    <Filebase
+                      type="file"
+                      mutiple={false}
+                      onDone={({ base64 }) =>
+                        setdata({ ...data, profilePic: base64 })
+                      }
+                    />
+                  )}
                 </Stack>
               </Box>
             </Stack>

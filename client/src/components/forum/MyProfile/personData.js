@@ -6,12 +6,11 @@ import {
   CardContent,
   Button,
   Avatar,
+  CardMedia,
 } from "@mui/material";
-
+import Image from "../../../images/defaultprofile.jpg";
 
 const PersonData = ({ result }) => {
-  
-
   return (
     <>
       {result.map((item) => (
@@ -22,32 +21,18 @@ const PersonData = ({ result }) => {
         >
           <CardContent style={{ background: "#080808" }}>
             <Stack direction="row">
-              <Avatar sx={{ background: "#f57c00", mt: "15px" }}>
-                {item.name.charAt(0).toUpperCase()}
-              </Avatar>
-              <Stack>
-                <Typography
-                  className="active"
-                  color="chocolate"
-                  mt="10px"
-                  ml="10px"
-                >
-                  {item.name}
-                </Typography>
-                <Typography className="active" color="white" ml="10px">
-                  {item.email}
-                </Typography>
-              </Stack>
+              <CardMedia
+                component="img"
+                sx={{ borderRadius: "50%" }}
+                height="140"
+                width="140"
+                image={item.profilePic !== "" ? item.profilePic : Image}
+              />
             </Stack>
-            <Typography
-              color="white"
-              variant="h6"
-              marginLeft="30px"
-              marginTop="10px"
-            >
-              {item.university}
+            <Typography color="white" variant="h6" marginTop="10px">
+              {item.name}
             </Typography>
-            <Typography color="white" marginLeft="100px">
+            <Typography color="white" marginLeft="60px">
               {item.role}
             </Typography>
             <Stack

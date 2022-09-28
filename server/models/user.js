@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
   university: { type: String, default: "" },
   joindate: { type: Date, default: Date.now() },
   profilePic: String,
+  phonenumber: String,
   passwordresettoken: String,
   passwordtokenexpiredata: Date,
 });

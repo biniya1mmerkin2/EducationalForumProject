@@ -4,6 +4,7 @@ import {
   sendEmail,
   resetPassword,
   getAllUser,
+  updateuserinfo,
 } from "../api/api";
 import {
   SIGNIN,
@@ -84,6 +85,15 @@ export const sendPasswordReset = (datavalue, token) => async (dispatch) => {
     const data = await resetPassword(datavalue, token);
     dispatch({ type: BUTTONLOADINGFINISHED });
     dispatch({ type: MESSAGE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateuserinfoaction = (userdata, id) => async (dispatch) => {
+  try {
+    const data = await updateuserinfo(userdata, id);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }
