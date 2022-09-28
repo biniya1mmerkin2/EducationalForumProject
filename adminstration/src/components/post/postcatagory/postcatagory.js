@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const PostCatagory = () => {
   const [idToUpdate, setIdToUpdate] = useState();
-  const check = useSelector((state) => state.check);
+  const check = useSelector((state) => state.post.check);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -7,3 +7,4 @@ export const getCatagory = () => axios.get(`${url}/forum`);
 export const updateCatagory = (id, post) =>
   axios.patch(`${url}/forum/${id}`, post);
 export const deleteCategory = (id) => axios.delete(`${url}/forum/${id}`);
+export const getallmembers = () => axios.get(`${url}/user`);

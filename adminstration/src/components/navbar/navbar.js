@@ -48,7 +48,7 @@ const NavBar = () => {
               underline="none"
               variant="inherit"
             >
-              Post
+              Catagory
             </Link>
             <Link
               className="navlink"
@@ -65,22 +65,6 @@ const NavBar = () => {
               variant="inherit"
             >
               Post
-            </Link>
-            <Link
-              className="navlink"
-              href="/contact"
-              underline="none"
-              variant="inherit"
-            >
-              SiteRule
-            </Link>
-            <Link
-              className="navlink"
-              href="/contact"
-              underline="none"
-              variant="inherit"
-            >
-              SignIn
             </Link>
           </Stack>
         </Stack>

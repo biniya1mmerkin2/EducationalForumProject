@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteCatagory } from "../../../../action/post";
 
 const DataTable = ({ setIdToUpdate }) => {
-  const { posts, isloading } = useSelector((state) => state);
+  const { posts, isloading } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
 

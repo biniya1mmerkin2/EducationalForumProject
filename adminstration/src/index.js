@@ -4,12 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { compose, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import post from "./reducer/post";
+import index from "./reducer/index";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-const store = createStore(post, compose(applyMiddleware(thunk)));
+const store = createStore(index, compose(applyMiddleware(thunk)));
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
