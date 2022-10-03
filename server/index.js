@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 
 import router from "./routes/forum.js";
 import user from "./routes/user.js";
+import post from "./routes/post.js";
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 app.use("/forum", router);
 app.use("/user", user);
+app.use("/post", post);
 
 app.get("/", (req, res) => {
   res.send("welcome to our server Api");
