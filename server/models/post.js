@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema({
-  titile: String,
+  title: String,
   description: String,
   postimage: String,
   likes: { type: [String], default: [] },

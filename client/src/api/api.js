@@ -12,3 +12,4 @@ export const resetPassword = (data, token) =>
   export const getAllUser = () => axios.get(`${url}/user`);
 export const updateuserinfo = (data, id) =>
   axios.patch(`${url}/user/update/${id}`, data);
+export const postdata = (data) => axios.post(`${url}/post`, data);
