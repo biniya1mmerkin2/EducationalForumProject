@@ -38,3 +38,7 @@ body {
 .file {
     height: 20%;
 }
+.rightpart {
+    position: sticky;
+    top: 100px;
+}

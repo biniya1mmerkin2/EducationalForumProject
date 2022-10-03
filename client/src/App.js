@@ -17,6 +17,7 @@ import { getUsers } from "./action/user";
 import Members from "./components/forum/members/members";
 import MembersIndex from "./components/forum/members";
 import CreatePost from "./components/forum/createpost/createpost";
+import Post from "./components/forum/post/post";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ function App() {
         <Route path="/profile" element={<PersonalData />} />
         <Route path="/members" element={<MembersIndex />} />
         <Route path="/forum/createpost/:id" element={<CreatePost />} />
+        <Route path="/forum/post" element={<Post />} />
       </Routes>
 
       <Routes>

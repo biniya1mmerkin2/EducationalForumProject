@@ -39,7 +39,7 @@ const CreatePost = () => {
       userid: "",
       categoryid: "",
     });
-    navigate("/forum");
+    navigate("/forum/post");
   };
   return (
     <Container
