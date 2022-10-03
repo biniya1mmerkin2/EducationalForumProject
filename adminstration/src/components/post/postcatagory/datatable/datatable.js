@@ -18,7 +18,7 @@ const DataTable = ({ setIdToUpdate }) => {
   const { posts, isloading } = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
-
+  console.log(posts);
   return !isloading ? (
     <>
       <TableContainer component={Paper} elevation={6} sx={{ height: 500 }}>

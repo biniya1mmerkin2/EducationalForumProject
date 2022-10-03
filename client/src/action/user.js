@@ -92,7 +92,9 @@ export const sendPasswordReset = (datavalue, token) => async (dispatch) => {
 
 export const updateuserinfoaction = (userdata, id) => async (dispatch) => {
   try {
+    dispatch({ type: BUTTONLOADING });
     const data = await updateuserinfo(userdata, id);
+    dispatch({ type: BUTTONLOADINGFINISHED });
     console.log(data);
   } catch (error) {
     console.log(error);

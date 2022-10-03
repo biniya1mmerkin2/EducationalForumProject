@@ -7,12 +7,16 @@ import {
   Divider,
   TextField,
   Box,
+  CircularProgress,
 } from "@mui/material";
 import Filebase from "react-file-base64";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateuserinfoaction } from "../../../action/user";
 
 const PersonDetail = ({ result }) => {
+  const { members, isloading, buttonloading } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
   const [test, setTest] = useState(true);
   // const [editUni, setEditUni] = useState(false);
@@ -27,12 +31,14 @@ const PersonDetail = ({ result }) => {
     setTest(!test);
   };
 
+  console.log(isloading);
+
   const handleUpdate = (id) => {
     console.log(data);
     dispatch(updateuserinfoaction(data, id));
     setdata({ university: "", phonenumber: "", profilePic: "" });
   };
-  return (
+  return !isloading ? (
     <Container maxWidth="xl" sx={{ border: 0.5, borderColor: "#ffffff" }}>
       {result.map((item) => (
         <Stack key={item._id}>
@@ -86,7 +92,11 @@ const PersonDetail = ({ result }) => {
                   color="warning"
                   onClick={() => handleUpdate(item._id)}
                 >
-                  Update info
+                  {buttonloading ? (
+                    <CircularProgress color="inherit" />
+                  ) : (
+                    "Update info"
+                  )}
                 </Button>
               </Stack>
             )}
@@ -195,6 +205,10 @@ const PersonDetail = ({ result }) => {
         </Stack>
       ))}
     </Container>
+  ) : (
+    <Stack>
+      <CircularProgress color="warning" />
+    </Stack>
   );
 };
 

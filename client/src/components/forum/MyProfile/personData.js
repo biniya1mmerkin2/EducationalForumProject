@@ -26,7 +26,7 @@ const PersonData = ({ result }) => {
                 sx={{ borderRadius: "50%" }}
                 height="140"
                 width="140"
-                image={item.profilePic !== "" ? item.profilePic : Image}
+                image={item.profilePic ? item.profilePic : Image}
               />
             </Stack>
             <Typography color="white" variant="h6" marginTop="10px">

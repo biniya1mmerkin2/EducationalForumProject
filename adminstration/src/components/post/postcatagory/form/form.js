@@ -7,7 +7,7 @@ import Filebase from "react-file-base64";
 const Form = ({ setIdToUpdate, idToUpdate }) => {
   const dispatch = useDispatch();
   const data = useSelector((state) =>
-    idToUpdate ? state.posts.find((post) => post._id === idToUpdate) : null
+    idToUpdate ? state.post.posts.find((post) => post._id === idToUpdate) : null
   );
 
   const [postData, setpostData] = useState({

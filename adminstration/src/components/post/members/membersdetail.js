@@ -33,7 +33,7 @@ const MembersDetail = () => {
             </Stack>
             <Stack>
               <img
-                src={item.profilePic === null ? { Image } : item.profilePic}
+                src={!item.profilePic ? Image : item.profilePic}
                 alt="defaultprofile"
                 width={100}
                 height={100}
