@@ -13,16 +13,17 @@ import {
   Link,
 } from "@mui/material";
 import SignUp from "../signup/signup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DataDisplay = () => {
   const [open, setOpen] = useState(false);
+  const { id } = useParams();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("userdata"));
 
   const handleOpen = () => setOpen(true);
   const handleNavigate = () => {
-    navigate("/forum");
+    navigate(`/forum/createpost/${id}`);
   };
 
   return (

@@ -16,6 +16,7 @@ import PersonalData from "./components/forum/MyProfile/personal";
 import { getUsers } from "./action/user";
 import Members from "./components/forum/members/members";
 import MembersIndex from "./components/forum/members";
+import CreatePost from "./components/forum/createpost/createpost";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function App() {
         <Route path="/forgetpassword/:token" element={<ResetPassword />} />
         <Route path="/profile" element={<PersonalData />} />
         <Route path="/members" element={<MembersIndex />} />
+        <Route path="/forum/createpost/:id" element={<CreatePost />} />
       </Routes>
 
       <Routes>
