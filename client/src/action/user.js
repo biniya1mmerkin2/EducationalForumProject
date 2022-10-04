@@ -57,10 +57,10 @@ export const signIn = (userdata, navigate, id) => async (dispatch) => {
 
 export const getUsers = () => async (dispatch) => {
   try {
-    dispatch({ type: ISLOADING });
+    
     const { data } = await getAllUser();
     dispatch({ type: GETALLUSER, payload: data });
-    dispatch({ type: FINISHED });
+   
   } catch (error) {
     console.log(error);
   }

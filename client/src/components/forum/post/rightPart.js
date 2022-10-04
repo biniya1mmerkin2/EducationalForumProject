@@ -1,15 +1,27 @@
 import { Stack, Button, Box, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const RightPart = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/forum");
+  };
   return (
     <Stack mt={3}>
       <Button variant="contained" color="warning" size="large">
         Comment
       </Button>
 
-      <Button variant="outlined" color="warning" size="large" sx={{ mt: 3 }}>
-        following post
+      <Button
+        variant="outlined"
+        color="warning"
+        size="large"
+        sx={{ mt: 3 }}
+        onClick={handleClick}
+      >
+        forum catagory
       </Button>
 
       <Box sx={{ border: 0.5, color: "#ffffff", padding: 3 }} mt={10}>

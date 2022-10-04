@@ -24,6 +24,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCategory());
+    dispatch(getUsers());
   });
 
   return (

@@ -8,6 +8,7 @@ const postSchema = mongoose.Schema({
   comments: { type: [String], default: [] },
   userid: String,
   categoryid: String,
+  dateofpost: { type: Date, default: Date.now() },
 });
 
 const Post = mongoose.model("postdata", postSchema);
