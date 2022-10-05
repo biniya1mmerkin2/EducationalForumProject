@@ -1,8 +1,9 @@
 import express from "express";
-import { postdata } from "../controllers/post.js";
+import { postdata, getallpost } from "../controllers/post.js";
 
 const post = express.Router();
 
 post.post("/", postdata);
+post.get("/:id", getallpost);
 
 export default post;

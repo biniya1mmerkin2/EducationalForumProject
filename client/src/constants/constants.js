@@ -11,3 +11,4 @@ export const GETALLUSER = "GETALLUSER";
 export const SETERROR = "SETERROR";
 export const REMOVEERROR = "REMOVEERROR";
 export const POST = "POST";
+export const ALLPOST = "ALLPOST";

@@ -21,7 +21,7 @@ const Post = () => {
   console.log(post);
   return (
     <Container>
-      {!isloading ? (
+      {!isloading && post ? (
         // post.map((item) => (
         <Grid container>
           <Grid item lg={9} sm={9}>
@@ -37,7 +37,7 @@ const Post = () => {
             />
           </Grid>
           <Grid item lg={3} sm={3}>
-            <RightPart />
+            <RightPart likes={likes} comments={comments} />
           </Grid>
         </Grid>
       ) : (

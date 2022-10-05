@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Typography, Stack } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import DataDisplay from "../data/datadisplay";
 
+import { allPost } from "../../../action/post";
+
 const CatagoryDetails = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const posts = useSelector((state) =>
     state.reducer.posts.find((item) => item._id === id)
   );
+  const allposts = useSelector((state) => state.post.allposts);
 
-  console.log(posts);
+  useEffect(() => {
+    dispatch(allPost(id));
+  }, []);
+
+  // console.log(allposts);
   return (
     <Container>
       <Stack>
@@ -45,7 +53,7 @@ const CatagoryDetails = () => {
         </Typography>
       </Stack>
 
-      <DataDisplay />
+      <DataDisplay allPosts={allposts} />
     </Container>
   );
 };

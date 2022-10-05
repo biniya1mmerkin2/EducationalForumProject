@@ -1,5 +1,5 @@
-import { postdata } from "../api/api";
-import { ISLOADING, FINISHED, POST } from "../constants/constants";
+import { postdata, getallpost } from "../api/api";
+import { ISLOADING, FINISHED, POST, ALLPOST } from "../constants/constants";
 
 export const post = (postdata1) => async (dispatch) => {
   try {
@@ -9,6 +9,15 @@ export const post = (postdata1) => async (dispatch) => {
     dispatch({ type: POST, payload: data });
     dispatch({ type: FINISHED });
     console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const allPost = (id) => async (dispatch) => {
+  try {
+    const { data } = await getallpost(id);
+    dispatch({ type: ALLPOST, payload: data });
   } catch (error) {
     console.log(error);
   }

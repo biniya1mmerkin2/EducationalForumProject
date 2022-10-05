@@ -89,16 +89,23 @@ const LeftPart = ({
                     {item.name}
                   </Typography>
                   <Stack direction="row" spacing={2} mt={2}>
-                    <Button variant="contained" color="warning" size="small">
-                      followers {item.followers.length}
-                    </Button>
-                    <Button variant="contained" color="warning" size="small">
-                      following {item.following.length}
-                    </Button>
+                    <Stack>
+                      <Typography color="white" className="active">
+                        followers
+                      </Typography>
+                      <Button variant="outlined" color="warning" size="small">
+                        {item.followers.length}
+                      </Button>
+                    </Stack>
+                    <Stack>
+                      <Typography color="white" className="active">
+                        following
+                      </Typography>
+                      <Button variant="outlined" color="warning" size="small">
+                        {item.following.length}
+                      </Button>
+                    </Stack>
                   </Stack>
-                  <Typography color="white" className="active">
-                    {new Date(item.joindate).toDateString()}
-                  </Typography>
                 </>
               </Stack>
             ))}

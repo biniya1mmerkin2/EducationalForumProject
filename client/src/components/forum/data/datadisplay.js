@@ -11,11 +11,13 @@ import {
   TableRow,
   Divider,
   Link,
+  Typography,
 } from "@mui/material";
 import SignUp from "../signup/signup";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-const DataDisplay = () => {
+const DataDisplay = ({ allPosts }) => {
   const [open, setOpen] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
@@ -25,6 +27,9 @@ const DataDisplay = () => {
   const handleNavigate = () => {
     navigate(`/forum/createpost/${id}`);
   };
+  const users = useSelector((state) => state.user.allUser);
+
+  // console.log(users);
 
   return (
     <Container
@@ -51,376 +56,67 @@ const DataDisplay = () => {
         </Stack>
       </Stack>
       <Divider sx={{ border: 0.5, borderColor: "white", margin: 0 }} />
+
       <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
+              <TableCell sx={{ color: "white" }}></TableCell>
+              <TableCell sx={{ color: "chocolate" }}>Likes</TableCell>
+              <TableCell sx={{ color: "chocolate" }}>Comments</TableCell>
+              <TableCell sx={{ color: "chocolate" }}>Date</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell sx={{ color: "white" }}>
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"#b3b0ae"}
-                >
-                  biniyammerkin30@gmail.com
-                </Link>
-                <br />
-                <Link
-                  href="#"
-                  className="active"
-                  variant="inherit"
-                  underline="none"
-                  color={"white"}
-                >
-                  what must i have to be a programmer?
-                </Link>
-              </TableCell>
-              <TableCell sx={{ color: "white" }}>Merkin</TableCell>
-              <TableCell sx={{ color: "white" }}>23</TableCell>
-              <TableCell sx={{ color: "white" }}>
-                Addis Abeba, Ethiopia
-              </TableCell>
-            </TableRow>
-          </TableBody>
+          {allPosts.length === 0 ? (
+            <Typography color="white">
+              {" "}
+              No posts yet in this catagory you can be the first
+            </Typography>
+          ) : (
+            <TableBody>
+              {allPosts.map((items) => (
+                <TableRow key={items._id}>
+                  <TableCell sx={{ color: "white" }}>
+                    {users.map((item) =>
+                      item._id === items.userid ? (
+                        <Link
+                          href="#"
+                          className="active"
+                          variant="inherit"
+                          underline="none"
+                          color={"#b3b0ae"}
+                          key={item._id}
+                        >
+                          {item.email}
+                        </Link>
+                      ) : (
+                        ""
+                      )
+                    )}
+                    <br />
+                    <Link
+                      href="#"
+                      className="active"
+                      variant="inherit"
+                      underline="none"
+                      color={"white"}
+                    >
+                      {items.description}
+                    </Link>
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }}>
+                    {items.likes.length}
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }}>
+                    {items.comments.length}
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }}>
+                    {new Date(items.dateofpost).toDateString()}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
       <SignUp open={open} setOpen={setOpen} />

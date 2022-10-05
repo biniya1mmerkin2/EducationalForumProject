@@ -40,6 +40,7 @@ function App() {
         <Route path="/members" element={<MembersIndex />} />
         <Route path="/forum/createpost/:id" element={<CreatePost />} />
         <Route path="/forum/post" element={<Post />} />
+        <Route path="/forum/post/:id" element={<Post />} />
       </Routes>
 
       <Routes>

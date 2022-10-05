@@ -1,8 +1,8 @@
-import { Stack, Button, Box, Typography } from "@mui/material";
+import { Stack, Button, Box, Typography, Link } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const RightPart = () => {
+const RightPart = ({ likes, comments }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -25,8 +25,8 @@ const RightPart = () => {
       </Button>
 
       <Box sx={{ border: 0.5, color: "#ffffff", padding: 3 }} mt={10}>
-        <Typography color="white">5 likes</Typography>
-        <Typography color="white">0 comment</Typography>
+        <Typography color="white">{likes.length} likes</Typography>
+        <Typography color="white">{comments.length} comment</Typography>
       </Box>
 
       <Box sx={{ border: 0.5, color: "#ffffff", padding: 1 }} mt={5}>
