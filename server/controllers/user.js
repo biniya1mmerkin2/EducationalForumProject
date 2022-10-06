@@ -98,7 +98,7 @@ export const forgetPassword = async (req, res) => {
       subject: "Password Reset Link",
       text:
         "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n" +
-        "Please click on the following link, or paste this into your browser to complete the process within 2 minute of receiving this message.\n\n" +
+        "Please click on the following link, or paste this into your browser to complete the process within 10 minute of receiving this message.\n\n" +
         `http://localhost:3000/forgetpassword/${token}\n\n` +
         "If you didn`t requested this, Please ignore this email and your password will remain unchanged.\n",
     };
