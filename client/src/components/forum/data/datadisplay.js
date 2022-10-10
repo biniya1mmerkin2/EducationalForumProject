@@ -95,7 +95,7 @@ const DataDisplay = ({ allPosts }) => {
                     )}
                     <br />
                     <Link
-                      href="#"
+                      href={`/forum/post/${items._id}`}
                       className="active"
                       variant="inherit"
                       underline="none"

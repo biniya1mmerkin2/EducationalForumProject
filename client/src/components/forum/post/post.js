@@ -37,7 +37,7 @@ const Post = () => {
             />
           </Grid>
           <Grid item lg={3} sm={3}>
-            <RightPart likes={likes} comments={comments} />
+            {/* <RightPart likes={likes} comments={comments} /> */}
           </Grid>
         </Grid>
       ) : (

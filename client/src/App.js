@@ -18,6 +18,7 @@ import Members from "./components/forum/members/members";
 import MembersIndex from "./components/forum/members";
 import CreatePost from "./components/forum/createpost/createpost";
 import Post from "./components/forum/post/post";
+import RandomPost from "./components/forum/post/randompost";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function App() {
         <Route path="/members" element={<MembersIndex />} />
         <Route path="/forum/createpost/:id" element={<CreatePost />} />
         <Route path="/forum/post" element={<Post />} />
-        <Route path="/forum/post/:id" element={<Post />} />
+        <Route path="/forum/post/:id" element={<RandomPost />} />
       </Routes>
 
       <Routes>

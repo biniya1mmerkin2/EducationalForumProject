@@ -104,9 +104,20 @@ const NavBar = () => {
             <Stack>
               {user?.result && (
                 <IconButton onClick={handleMenu} size="small" sx={{ mt: 1 }}>
-                  <Avatar sx={{ background: "#f57c00" }}>
-                    {user?.result?.name.charAt(0).toUpperCase()}
-                  </Avatar>{" "}
+                  {user?.result?.profilePic ? (
+                    <Avatar>
+                      <img
+                        src={user?.result?.profilePic}
+                        alt="profileimage"
+                        width={50}
+                        height={50}
+                      />
+                    </Avatar>
+                  ) : (
+                    <Avatar sx={{ background: "#f57c00" }}>
+                      {user?.result?.name.charAt(0).toUpperCase()}
+                    </Avatar>
+                  )}
                   <ExpandMoreOutlined color="warning" />
                 </IconButton>
               )}

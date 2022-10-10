@@ -1,4 +1,4 @@
-import { postdata, getallpost } from "../api/api";
+import { postdata, getallpost, getSinglePost } from "../api/api";
 import { ISLOADING, FINISHED, POST, ALLPOST } from "../constants/constants";
 
 export const post = (postdata1) => async (dispatch) => {
@@ -18,6 +18,15 @@ export const allPost = (id) => async (dispatch) => {
   try {
     const { data } = await getallpost(id);
     dispatch({ type: ALLPOST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getSinglePostData = (id) => async (dispatch) => {
+  try {
+    const { data } = await getSinglePost(id);
+    dispatch({ type: POST, payload: data });
   } catch (error) {
     console.log(error);
   }

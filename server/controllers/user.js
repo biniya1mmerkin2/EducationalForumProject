@@ -85,15 +85,16 @@ export const forgetPassword = async (req, res) => {
       }
     );
     var transporter = nodemailer.createTransport({
-      service: "gmail",
+      // service: "gmail",
+      host: "smtp.gmail.com",
       auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
+        user: "educationalforumethio@gmail.com",
+        pass: "dcmdhcmihojwhmzb",
       },
     });
 
     var mailOptions = {
-      from: process.env.EMAIL,
+      from: "educationalforumethio@gmail.com",
       to: email,
       subject: "Password Reset Link",
       text:

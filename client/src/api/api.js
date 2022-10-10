@@ -14,3 +14,4 @@ export const updateuserinfo = (data, id) =>
   axios.patch(`${url}/user/update/${id}`, data);
 export const postdata = (data) => axios.post(`${url}/post`, data);
 export const getallpost = (id) => axios.get(`${url}/post/${id}`);
+export const getSinglePost = (id) => axios.get(`${url}/post/singlepost/${id}`);
