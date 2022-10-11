@@ -2,17 +2,24 @@ import { Stack, Button, Box, Typography, Link } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const RightPart = ({ likes, comments }) => {
+const RightPart = ({ likes, comments, userid }) => {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("userdata"));
 
   const handleClick = () => {
     navigate("/forum");
   };
+
+  console.log(user?.result?._id);
   return (
     <Stack mt={3}>
-      <Button variant="contained" color="warning" size="large">
-        Comment
-      </Button>
+      {user?.result?._id === userid ? (
+        <Button variant="contained" color="warning" size="large">
+          Edit Post
+        </Button>
+      ) : (
+        ""
+      )}
 
       <Button
         variant="outlined"

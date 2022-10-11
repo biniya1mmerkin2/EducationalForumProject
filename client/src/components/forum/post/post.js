@@ -24,7 +24,7 @@ const Post = () => {
       {!isloading && post ? (
         // post.map((item) => (
         <Grid container>
-          <Grid item lg={9} sm={9}>
+          <Grid item lg={9} md={7} sm={12}>
             <LeftPart
               title={title}
               description={description}
@@ -36,8 +36,8 @@ const Post = () => {
               dateofpost={dateofpost}
             />
           </Grid>
-          <Grid item lg={3} sm={3}>
-            {/* <RightPart likes={likes} comments={comments} /> */}
+          <Grid item lg={3} md={5} sm={12}>
+            <RightPart likes={likes} comments={comments} userid={userid} />
           </Grid>
         </Grid>
       ) : (
