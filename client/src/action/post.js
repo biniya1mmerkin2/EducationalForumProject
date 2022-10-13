@@ -1,5 +1,11 @@
-import { postdata, getallpost, getSinglePost } from "../api/api";
-import { ISLOADING, FINISHED, POST, ALLPOST } from "../constants/constants";
+import { postdata, getallpost, getSinglePost, getLatestPost } from "../api/api";
+import {
+  ISLOADING,
+  FINISHED,
+  POST,
+  ALLPOST,
+  GETLATEST,
+} from "../constants/constants";
 
 export const post = (postdata1) => async (dispatch) => {
   try {
@@ -27,6 +33,15 @@ export const getSinglePostData = (id) => async (dispatch) => {
   try {
     const { data } = await getSinglePost(id);
     dispatch({ type: POST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getLatestPosts = () => async (dispatch) => {
+  try {
+    const { data } = await getLatestPost();
+    dispatch({ type: GETLATEST, payload: data });
   } catch (error) {
     console.log(error);
   }

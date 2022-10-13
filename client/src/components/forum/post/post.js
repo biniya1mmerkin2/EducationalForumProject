@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Stack, Grid, CircularProgress } from "@mui/material";
 
 import RightPart from "./rightPart";
@@ -19,6 +19,10 @@ const Post = () => {
     dateofpost,
   } = post;
   console.log(post);
+
+  useEffect(() => {
+    console.log(likes);
+  });
   return (
     <Container>
       {!isloading && post ? (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Avatar,
   Divider,
@@ -11,7 +11,7 @@ import {
   Modal,
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { FavoriteBorderOutlined } from "@mui/icons-material";
+import { FavoriteBorderOutlined, Favorite } from "@mui/icons-material";
 import Image from "../../../images/javascript_logo.png";
 const style = {
   position: "absolute",
@@ -52,16 +52,36 @@ const LeftPart = ({
   const email = alluser.map((item) => item.email);
   const profilePic = alluser.map((item) => item.profilePic);
   const category = posts.map((item) => item.title);
+  let isthere = likes.filter((item) => item === userid);
 
   const handleCancel = () => {
     setcheck(false);
     setChecktyping(false);
   };
 
+  const handleClick = () => {
+    if (isthere.length > 0) {
+      likes.shift();
+      console.log("dislike");
+      // isthere = likes.filter((item) => item === userid);
+      // console.log(isthere);
+    }
+  };
+
+  const handleClick2 = () => {
+    likes.push(userid);
+    console.log("like");
+    //   isthere = likes.filter((item) => item === userid);
+    //   console.log(isthere);
+  };
+
   const handleClose = () => {
     setopen(false);
   };
-  // console.log(alluser);
+
+  // useEffect(() => {
+  //   console.log(isthere);
+  // });
   return (
     <Stack>
       <Modal
@@ -140,9 +160,15 @@ const LeftPart = ({
         <img src={postimage} alt="postimage" width={400} height={400} />
       </Stack>
       <Stack direction="row" mb={2}>
-        <IconButton>
-          <FavoriteBorderOutlined color="error" />
-        </IconButton>
+        {isthere.length > 0 ? (
+          <IconButton onClick={handleClick}>
+            <Favorite color="error" />
+          </IconButton>
+        ) : (
+          <IconButton onClick={handleClick2}>
+            <FavoriteBorderOutlined color="error" />
+          </IconButton>
+        )}
         <Typography color="white" mt={1}>
           {likes.length}
         </Typography>

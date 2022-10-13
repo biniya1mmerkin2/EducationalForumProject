@@ -1,6 +1,15 @@
-import { ISLOADING, FINISHED, POST, ALLPOST } from "../constants/constants";
+import {
+  ISLOADING,
+  FINISHED,
+  POST,
+  ALLPOST,
+  GETLATEST,
+} from "../constants/constants";
 
-const post = (state = { allposts: [], post: [], isloading: false }, action) => {
+const post = (
+  state = { allposts: [], post: [], isloading: false, latestpost: [] },
+  action
+) => {
   switch (action.type) {
     case POST:
       return { ...state, post: action.payload };
@@ -10,6 +19,8 @@ const post = (state = { allposts: [], post: [], isloading: false }, action) => {
       return { ...state, isloading: true };
     case FINISHED:
       return { ...state, isloading: false };
+    case GETLATEST:
+      return { ...state, latestpost: action.payload };
     default:
       return state;
   }

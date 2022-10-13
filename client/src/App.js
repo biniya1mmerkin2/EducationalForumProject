@@ -19,6 +19,7 @@ import MembersIndex from "./components/forum/members";
 import CreatePost from "./components/forum/createpost/createpost";
 import Post from "./components/forum/post/post";
 import RandomPost from "./components/forum/post/randompost";
+import { getLatestPosts } from "./action/post";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
   useEffect(() => {
     dispatch(getCategory());
     dispatch(getUsers());
+    dispatch(getLatestPosts());
   });
 
   return (

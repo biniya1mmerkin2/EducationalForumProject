@@ -15,3 +15,4 @@ export const updateuserinfo = (data, id) =>
 export const postdata = (data) => axios.post(`${url}/post`, data);
 export const getallpost = (id) => axios.get(`${url}/post/${id}`);
 export const getSinglePost = (id) => axios.get(`${url}/post/singlepost/${id}`);
+export const getLatestPost = () => axios.get(`${url}/post`);
