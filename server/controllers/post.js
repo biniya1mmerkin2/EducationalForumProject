@@ -44,3 +44,31 @@ export const getLatestPost = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+export const postreaction = async (req, res) => {
+  const param = req.params;
+  const { userid } = req.body;
+  try {
+    const data = await Post.updateOne(
+      { _id: param.id },
+      { $push: { likes: userid } }
+    );
+    res.json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const postreactionremove = async (req, res) => {
+  const param = req.params;
+  const { userid } = req.body;
+  try {
+    const data = await Post.updateOne(
+      { _id: param.id },
+      { $pull: { likes: userid } }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(200).json(error);
+  }
+};

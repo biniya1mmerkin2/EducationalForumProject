@@ -24,7 +24,7 @@ const NewPost = () => {
     dispatch(getLatestPosts());
   }, []);
 
-  console.log(allUser);
+  // console.log(allUser);
   return (
     <Container maxWidth="md" sx={{ borderRadius: 50, border: 5 }}>
       <Typography variant="caption" color={"white"} mt="40px">

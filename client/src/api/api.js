@@ -16,3 +16,7 @@ export const postdata = (data) => axios.post(`${url}/post`, data);
 export const getallpost = (id) => axios.get(`${url}/post/${id}`);
 export const getSinglePost = (id) => axios.get(`${url}/post/singlepost/${id}`);
 export const getLatestPost = () => axios.get(`${url}/post`);
+export const like = (id, userid) =>
+  axios.patch(`${url}/post/reaction/${id}`, userid);
+export const dislike = (id, userid) =>
+  axios.patch(`${url}/post/reactionremove/${id}`, userid);

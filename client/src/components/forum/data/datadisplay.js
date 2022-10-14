@@ -16,6 +16,7 @@ import {
 import SignUp from "../signup/signup";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { Comment, DateRange, Favorite } from "@mui/icons-material";
 
 const DataDisplay = ({ allPosts }) => {
   const [open, setOpen] = useState(false);
@@ -62,9 +63,15 @@ const DataDisplay = ({ allPosts }) => {
           <TableHead>
             <TableRow>
               <TableCell sx={{ color: "white" }}></TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Likes</TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Comments</TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Date</TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <Favorite color="warning" />
+              </TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <Comment color="warning" />
+              </TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <DateRange />
+              </TableCell>
             </TableRow>
           </TableHead>
           {allPosts.length === 0 ? (
@@ -84,7 +91,7 @@ const DataDisplay = ({ allPosts }) => {
                           className="active"
                           variant="inherit"
                           underline="none"
-                          color={"#b3b0ae"}
+                          color="chocolate"
                           key={item._id}
                         >
                           {item.email}

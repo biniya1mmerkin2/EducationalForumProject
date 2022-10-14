@@ -9,6 +9,7 @@ const Post = () => {
   const { post, isloading } = useSelector((state) => state.post);
   const user = useSelector((state) => state.user);
   const {
+    _id,
     title,
     description,
     likes,
@@ -18,11 +19,11 @@ const Post = () => {
     postimage,
     dateofpost,
   } = post;
-  console.log(post);
 
-  useEffect(() => {
-    console.log(likes);
-  });
+  // useEffect(() => {
+  //   console.log(_id);
+  // });
+  console.log(post);
   return (
     <Container>
       {!isloading && post ? (
@@ -30,6 +31,7 @@ const Post = () => {
         <Grid container>
           <Grid item lg={9} md={7} sm={12}>
             <LeftPart
+              id={_id}
               title={title}
               description={description}
               likes={likes}

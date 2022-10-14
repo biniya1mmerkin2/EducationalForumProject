@@ -1,4 +1,11 @@
-import { postdata, getallpost, getSinglePost, getLatestPost } from "../api/api";
+import {
+  postdata,
+  getallpost,
+  getSinglePost,
+  getLatestPost,
+  like,
+  dislike,
+} from "../api/api";
 import {
   ISLOADING,
   FINISHED,
@@ -42,6 +49,22 @@ export const getLatestPosts = () => async (dispatch) => {
   try {
     const { data } = await getLatestPost();
     dispatch({ type: GETLATEST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postLike = (postid, usersid) => async (dispatch) => {
+  try {
+    const { data } = await like(postid, usersid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postdislike = (postid, usersid) => async (dispatch) => {
+  try {
+    const { data } = await dislike(postid, usersid);
   } catch (error) {
     console.log(error);
   }

@@ -11,6 +11,7 @@ const RandomPost = () => {
   const dispatch = useDispatch();
   const { post } = useSelector((state) => state.post);
   const {
+    _id,
     title,
     description,
     likes,
@@ -25,7 +26,7 @@ const RandomPost = () => {
     dispatch(getSinglePostData(id));
   }, []);
 
-  console.log("hi " + post);
+  // console.log(post);
 
   return (
     <Container>
@@ -33,6 +34,7 @@ const RandomPost = () => {
         <Grid container>
           <Grid item lg={9} sm={9}>
             <LeftPart
+              id={_id}
               title={title}
               description={description}
               likes={likes}

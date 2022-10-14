@@ -1,5 +1,5 @@
 import { Stack, Button, Box, Typography, Link } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const RightPart = ({ likes, comments, userid }) => {
@@ -10,7 +10,10 @@ const RightPart = ({ likes, comments, userid }) => {
     navigate("/forum");
   };
 
-  console.log(user?.result?._id);
+  // useEffect(() => {
+  //   console.log("hi");
+  // }, [user]);
+  // console.log(user?.result?._id);
   return (
     <Stack mt={3}>
       {user?.result?._id === userid ? (
