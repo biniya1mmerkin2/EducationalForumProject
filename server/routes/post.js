@@ -6,6 +6,7 @@ import {
   getLatestPost,
   postreaction,
   postreactionremove,
+  postComment,
 } from "../controllers/post.js";
 
 const post = express.Router();
@@ -16,5 +17,5 @@ post.patch("/reactionremove/:id", postreactionremove);
 post.get("/:id", getallpost);
 post.get("/singlepost/:id", getSinglePost);
 post.get("/", getLatestPost);
-
+post.patch("/comment/:id", postComment);
 export default post;

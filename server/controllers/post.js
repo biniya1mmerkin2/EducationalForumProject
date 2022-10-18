@@ -72,3 +72,17 @@ export const postreactionremove = async (req, res) => {
     res.status(200).json(error);
   }
 };
+
+export const postComment = async (req, res) => {
+  const param = req.params;
+  const { comment, userid } = req.body;
+  try {
+    const data = await Post.findByIdAndUpdate(
+      { _id: param.id },
+      { $push: { comments: { comment: comment, userid: userid } } }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(200).json(error);
+  }
+};

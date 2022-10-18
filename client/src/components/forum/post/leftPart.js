@@ -84,7 +84,7 @@ const LeftPart = ({
     setopen(false);
   };
 
-  // console.log(users);
+  // console.log(id);
   return (
     <Stack>
       <Modal
@@ -206,6 +206,24 @@ const LeftPart = ({
       ) : (
         ""
       )}
+      <Box mt="40px" sx={{ border: 0.5, borderRadius: 5 }}>
+        <Stack direction="row" spacing={2}>
+          <Avatar>B</Avatar>
+          <Stack spacing={1}>
+            <Typography color="chocolate">biniyammerkin30@gmail.com</Typography>
+            <Typography color="white">it is good idea i love it</Typography>
+
+            <Stack direction="row">
+              <IconButton>
+                <Favorite color="error" />
+              </IconButton>
+              <Typography color="white" mt="10px">
+                9
+              </Typography>
+            </Stack>
+          </Stack>
+        </Stack>
+      </Box>
     </Stack>
   );
 };
