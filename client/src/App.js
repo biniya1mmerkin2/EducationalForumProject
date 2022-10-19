@@ -28,6 +28,7 @@ function App() {
     dispatch(getCategory());
     dispatch(getUsers());
     dispatch(getLatestPosts());
+    document.title = "Educational Forum";
   });
 
   return (

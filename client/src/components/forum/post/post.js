@@ -20,10 +20,8 @@ const Post = () => {
     dateofpost,
   } = post;
 
-  // useEffect(() => {
-  //   console.log(_id);
-  // });
-  console.log(post);
+  useEffect(() => {});
+  // console.log(post);
   return (
     <Container>
       {!isloading && post ? (
@@ -54,6 +52,6 @@ const Post = () => {
       )}
     </Container>
   );
-};
+};;
 
 export default Post;

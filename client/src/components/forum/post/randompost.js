@@ -24,9 +24,10 @@ const RandomPost = () => {
 
   useEffect(() => {
     dispatch(getSinglePostData(id));
-  }, []);
+    // console.log(post);
+  });
 
-  // console.log(post);
+  
 
   return (
     <Container>

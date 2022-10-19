@@ -5,6 +5,7 @@ import {
   getLatestPost,
   like,
   dislike,
+  postcomment,
 } from "../api/api";
 import {
   ISLOADING,
@@ -12,6 +13,8 @@ import {
   POST,
   ALLPOST,
   GETLATEST,
+  BUTTONLOADING,
+  BUTTONLOADINGFINISHED,
 } from "../constants/constants";
 
 export const post = (postdata1) => async (dispatch) => {
@@ -65,6 +68,17 @@ export const postLike = (postid, usersid) => async (dispatch) => {
 export const postdislike = (postid, usersid) => async (dispatch) => {
   try {
     const { data } = await dislike(postid, usersid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const comment = (comment, postid) => async (dispatch) => {
+  try {
+    dispatch({ type: BUTTONLOADING });
+    const { data } = await postcomment(comment, postid);
+
+    dispatch({ type: BUTTONLOADINGFINISHED });
   } catch (error) {
     console.log(error);
   }

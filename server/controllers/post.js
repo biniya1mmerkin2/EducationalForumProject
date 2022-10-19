@@ -77,7 +77,7 @@ export const postComment = async (req, res) => {
   const param = req.params;
   const { comment, userid } = req.body;
   try {
-    const data = await Post.findByIdAndUpdate(
+    const data = await Post.updateOne(
       { _id: param.id },
       { $push: { comments: { comment: comment, userid: userid } } }
     );

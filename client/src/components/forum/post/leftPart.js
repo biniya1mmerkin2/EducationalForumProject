@@ -9,11 +9,19 @@ import {
   TextField,
   Button,
   Modal,
+  CircularProgress,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { FavoriteBorderOutlined, Favorite } from "@mui/icons-material";
+import {
+  FavoriteBorderOutlined,
+  Favorite,
+  MoreVert,
+  MoreVertOutlined,
+  Quickreply,
+  QuickreplyOutlined,
+} from "@mui/icons-material";
 
-import { postLike, postdislike } from "../../../action/post";
+import { postLike, postdislike, comment } from "../../../action/post";
 const style = {
   position: "absolute",
   top: "35%",
@@ -46,7 +54,9 @@ const LeftPart = ({
 
   const handleopen = () => setopen(true);
 
+  const { buttonisloading } = useSelector((state) => state.post);
   const users = JSON.parse(localStorage.getItem("userdata"));
+  const members = useSelector((state) => state.user.allUser);
   const alluser = useSelector((state) =>
     state.user.allUser.filter((item) => item._id === userid)
   );
@@ -60,6 +70,10 @@ const LeftPart = ({
   const isthere = likes.filter((item) => item === users?.result?._id);
 
   const [reaction, setreaction] = useState(isthere.length > 0 ? true : false);
+  const [commentdata, setcomment] = useState({
+    comment: "",
+    userid: users.result._id,
+  });
 
   const handleCancel = () => {
     setcheck(false);
@@ -84,7 +98,16 @@ const LeftPart = ({
     setopen(false);
   };
 
-  // console.log(id);
+  const handlePublish = () => {
+    dispatch(comment(commentdata, id));
+    setcomment({
+      comment: "",
+      userid: users.result._id,
+    });
+    // console.log(comment);
+  };
+
+  // console.log(members);
   return (
     <Stack>
       <Modal
@@ -135,19 +158,26 @@ const LeftPart = ({
           </Stack>
         </Box>
       </Modal>
-      <Stack direction="row" spacing={1} mt="30px">
-        <Button onMouseOver={() => setopen(true)}>
-          <Avatar sx={{ background: "#f57c00" }}>
-            <img src={profilePic} alt="pic" height={50} width={80} />
-          </Avatar>
-        </Button>
+      <Stack direction="row" spacing={60} mt="30px">
+        <Stack direction="row" spacing={1}>
+          <Button onMouseOver={() => setopen(true)}>
+            <Avatar sx={{ background: "#f57c00" }}>
+              <img src={profilePic} alt="pic" height={50} width={80} />
+            </Avatar>
+          </Button>
+          <Stack>
+            <Typography color="chocolate" className="active">
+              {email}
+            </Typography>
+            <Typography color="white">
+              {new Date(dateofpost).toDateString()}
+            </Typography>
+          </Stack>
+        </Stack>
         <Stack>
-          <Typography color="chocolate" className="active">
-            {email}
-          </Typography>
-          <Typography color="white">
-            {new Date(dateofpost).toDateString()}
-          </Typography>
+          <IconButton>
+            <MoreVertOutlined sx={{ color: "white" }} />
+          </IconButton>
         </Stack>
       </Stack>
       <Typography variant="h5" color="white" mt="20px" mb="10px">
@@ -186,6 +216,10 @@ const LeftPart = ({
         <TextField
           label="leave your comment here"
           fullWidth
+          value={commentdata.comment}
+          onChange={(e) =>
+            setcomment({ ...commentdata, comment: e.target.value })
+          }
           onClick={() => setcheck(true)}
           // onKeyDown={() => setChecktyping(true)}
           onInput={() => setChecktyping(true)}
@@ -199,30 +233,67 @@ const LeftPart = ({
           <Button
             variant="contained"
             color={checktyping ? "warning" : "inherit"}
+            onClick={handlePublish}
           >
-            Publish
+            {buttonisloading ? <CircularProgress /> : "Publish"}
           </Button>
         </Stack>
       ) : (
         ""
       )}
       <Box mt="40px" sx={{ border: 0.5, borderRadius: 5 }}>
-        <Stack direction="row" spacing={2}>
-          <Avatar>B</Avatar>
-          <Stack spacing={1}>
-            <Typography color="chocolate">biniyammerkin30@gmail.com</Typography>
-            <Typography color="white">it is good idea i love it</Typography>
+        {comments.length > 0
+          ? comments.map((item) => (
+              <Stack direction="row" spacing={2} key={item._id} mt={2}>
+                {members.map((mem) =>
+                  mem._id === item.userid ? (
+                    <Stack direction="row" spacing={2} key={mem._id}>
+                      {!mem.profilePic ? (
+                        <Avatar sx={{ color: "black" }}>
+                          {mem.name.charAt(0)}
+                        </Avatar>
+                      ) : (
+                        <Avatar sx={{ background: "#f57c00" }}>
+                          <img
+                            src={mem.profilePic}
+                            alt="pic"
+                            height={50}
+                            width={80}
+                          />
+                        </Avatar>
+                      )}
+                      <Stack spacing={1}>
+                        <Typography color="chocolate">{mem.email}</Typography>
+                        <Typography color="white">{item.comment}</Typography>
 
-            <Stack direction="row">
-              <IconButton>
-                <Favorite color="error" />
-              </IconButton>
-              <Typography color="white" mt="10px">
-                9
-              </Typography>
-            </Stack>
-          </Stack>
-        </Stack>
+                        <Stack direction="row" spacing={4}>
+                          <Stack direction="row">
+                            <IconButton>
+                              <FavoriteBorderOutlined color="error" />
+                            </IconButton>
+                            <Typography color="white" mt="10px">
+                              {item.likes.length}
+                            </Typography>
+                          </Stack>
+
+                          <Stack direction="row">
+                            <IconButton>
+                              <QuickreplyOutlined sx={{ color: "white" }} />
+                            </IconButton>
+                            <Typography color="white" mt="10px">
+                              reply
+                            </Typography>
+                          </Stack>
+                        </Stack>
+                      </Stack>
+                    </Stack>
+                  ) : (
+                    ""
+                  )
+                )}
+              </Stack>
+            ))
+          : ""}
       </Box>
     </Stack>
   );

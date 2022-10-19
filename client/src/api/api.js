@@ -20,3 +20,5 @@ export const like = (id, userid) =>
   axios.patch(`${url}/post/reaction/${id}`, userid);
 export const dislike = (id, userid) =>
   axios.patch(`${url}/post/reactionremove/${id}`, userid);
+export const postcomment = (comment, postid) =>
+  axios.patch(`${url}/post/comment/${postid}`, comment);
