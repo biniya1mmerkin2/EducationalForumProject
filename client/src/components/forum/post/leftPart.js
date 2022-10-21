@@ -11,14 +11,12 @@ import {
   Modal,
   CircularProgress,
 } from "@mui/material";
+import CommentPost from "./comments";
 import { useSelector, useDispatch } from "react-redux";
 import {
   FavoriteBorderOutlined,
   Favorite,
-  MoreVert,
   MoreVertOutlined,
-  Quickreply,
-  QuickreplyOutlined,
 } from "@mui/icons-material";
 
 import { postLike, postdislike, comment } from "../../../action/post";
@@ -48,10 +46,8 @@ const LeftPart = ({
 }) => {
   const [check, setcheck] = useState(false);
   const [checktyping, setChecktyping] = useState(false);
-  const [replay, setreplay] = useState(false);
-  const [replaying, setreplaying] = useState(false);
+
   const [open, setopen] = useState(false);
-  const [showReplay, setshowReplay] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -59,7 +55,7 @@ const LeftPart = ({
 
   const { buttonisloading } = useSelector((state) => state.post);
   const users = JSON.parse(localStorage.getItem("userdata"));
-  const members = useSelector((state) => state.user.allUser);
+
   const alluser = useSelector((state) =>
     state.user.allUser.filter((item) => item._id === userid)
   );
@@ -73,6 +69,9 @@ const LeftPart = ({
   const isthere = likes.filter((item) => item === users?.result?._id);
 
   const [reaction, setreaction] = useState(isthere.length > 0 ? true : false);
+  // const [commentreaction, setcommentreaction] = useState(
+  //   com.length > 0 ? true : false
+  // );
   const [commentdata, setcomment] = useState({
     comment: "",
     userid: users.result._id,
@@ -81,12 +80,6 @@ const LeftPart = ({
   const handleCancel = () => {
     setcheck(false);
     setChecktyping(false);
-  };
-
-  const handleReplayCancel = () => {
-    setreplay(false);
-    setreplaying(false);
-    setshowReplay(false);
   };
 
   const handleClick = () => {
@@ -103,6 +96,10 @@ const LeftPart = ({
     dispatch(postLike(id, { userid: users?.result?._id }));
   };
 
+  const handleCommentreaction = () => {};
+
+  const handleCommentreaction2 = () => {};
+
   const handleClose = () => {
     setopen(false);
   };
@@ -116,7 +113,7 @@ const LeftPart = ({
     // console.log(comment);
   };
 
-  // console.log(members);
+  // console.log(com);
   return (
     <Stack>
       <Modal
@@ -250,96 +247,7 @@ const LeftPart = ({
       ) : (
         ""
       )}
-      <Box mt="40px" sx={{ border: 0.5, borderRadius: 5 }}>
-        {comments.length > 0
-          ? comments.map((item) => (
-              <>
-                <Stack direction="row" spacing={2} key={item._id} mt={2}>
-                  {members.map((mem) =>
-                    mem._id === item.userid ? (
-                      <Stack direction="row" spacing={2} key={mem._id}>
-                        {!mem.profilePic ? (
-                          <Avatar sx={{ color: "black" }}>
-                            {mem.name.charAt(0)}
-                          </Avatar>
-                        ) : (
-                          <Avatar sx={{ background: "#f57c00" }}>
-                            <img
-                              src={mem.profilePic}
-                              alt="pic"
-                              height={50}
-                              width={80}
-                            />
-                          </Avatar>
-                        )}
-                        <Stack spacing={1}>
-                          <Typography color="chocolate">{mem.email}</Typography>
-                          <Typography color="white">{item.comment}</Typography>
-
-                          <Stack direction="row" spacing={4}>
-                            <Stack direction="row">
-                              <IconButton>
-                                <FavoriteBorderOutlined color="error" />
-                              </IconButton>
-                              <Typography color="white" mt="10px">
-                                {item.likes.length}
-                              </Typography>
-                            </Stack>
-
-                            <Stack direction="row">
-                              <IconButton onClick={() => setshowReplay(true)}>
-                                <QuickreplyOutlined sx={{ color: "white" }} />
-                              </IconButton>
-                              <Typography color="white" mt="10px">
-                                reply
-                              </Typography>
-                            </Stack>
-                          </Stack>
-                        </Stack>
-                      </Stack>
-                    ) : (
-                      ""
-                    )
-                  )}
-                </Stack>
-              </>
-            ))
-          : ""}
-      </Box>
-      {showReplay ? (
-        <>
-          <Box sx={{ backgroundColor: "white" }} mt="15px" ml="50px">
-            <TextField
-              label="enter replay comment"
-              fullWidth
-              onClick={() => setreplay(true)}
-              onInput={() => setreplaying(true)}
-            />
-          </Box>
-          {replay ? (
-            <Stack direction="row" justifyContent="flex-end" spacing={2} mt={2}>
-              <Button
-                variant="outlined"
-                color="warning"
-                onClick={handleReplayCancel}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="contained"
-                color={replaying ? "warning" : "inherit"}
-                onClick={handlePublish}
-              >
-                {buttonisloading ? <CircularProgress /> : "Replay"}
-              </Button>
-            </Stack>
-          ) : (
-            ""
-          )}
-        </>
-      ) : (
-        ""
-      )}
+      <CommentPost comments={comments} />
     </Stack>
   );
 };
