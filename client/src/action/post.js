@@ -6,6 +6,8 @@ import {
   like,
   dislike,
   postcomment,
+  likecomment,
+  dislikecomment,
 } from "../api/api";
 import {
   ISLOADING,
@@ -79,6 +81,22 @@ export const comment = (comment, postid) => async (dispatch) => {
     const { data } = await postcomment(comment, postid);
 
     dispatch({ type: BUTTONLOADINGFINISHED });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const likecome = (id, userid) => async (dispatch) => {
+  try {
+    const { data } = await likecomment(id, userid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const removelikecome = (id, userid) => async (dispatch) => {
+  try {
+    const { data } = await dislikecomment(id, userid);
   } catch (error) {
     console.log(error);
   }

@@ -51,7 +51,7 @@ const LeftPart = ({
 
   const dispatch = useDispatch();
 
-  const handleopen = () => setopen(true);
+  // const handleopen = () => setopen(true);
 
   const { buttonisloading } = useSelector((state) => state.post);
   const users = JSON.parse(localStorage.getItem("userdata"));
@@ -69,9 +69,7 @@ const LeftPart = ({
   const isthere = likes.filter((item) => item === users?.result?._id);
 
   const [reaction, setreaction] = useState(isthere.length > 0 ? true : false);
-  // const [commentreaction, setcommentreaction] = useState(
-  //   com.length > 0 ? true : false
-  // );
+
   const [commentdata, setcomment] = useState({
     comment: "",
     userid: users.result._id,
@@ -95,10 +93,6 @@ const LeftPart = ({
     setreaction(true);
     dispatch(postLike(id, { userid: users?.result?._id }));
   };
-
-  const handleCommentreaction = () => {};
-
-  const handleCommentreaction2 = () => {};
 
   const handleClose = () => {
     setopen(false);
@@ -247,7 +241,7 @@ const LeftPart = ({
       ) : (
         ""
       )}
-      <CommentPost comments={comments} />
+      <CommentPost comments={comments} id={id} />
     </Stack>
   );
 };

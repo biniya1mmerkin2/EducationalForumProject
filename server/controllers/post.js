@@ -83,6 +83,35 @@ export const postComment = async (req, res) => {
     );
     res.status(200).json(data);
   } catch (error) {
-    res.status(200).json(error);
+    res.status(500).json(error);
   }
 };
+
+export const postCommentReaction = async (req, res) => {
+  const param = req.params;
+  const { userid, commentid } = req.body;
+  try {
+    const data = await Post.updateOne(
+      { _id: param.id, "comments._id": commentid },
+      { $push: { "comments.$.likes": userid } }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const postCommentReactionremove = async (req, res) => {
+  const param = req.params;
+  const { userid, commentid } = req.body;
+  try {
+    const data = await Post.updateOne(
+      { _id: param.id, "comments._id": commentid },
+      { $pull: { "comments.$.likes": userid } }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+

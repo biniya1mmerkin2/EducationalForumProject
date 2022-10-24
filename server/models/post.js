@@ -9,7 +9,7 @@ const postSchema = mongoose.Schema({
     {
       userid: String,
       comment: String,
-      likes: [],
+      likes: { type: [String], default: [] },
       replay: [],
       date: { type: Date, default: Date.now() },
     },
