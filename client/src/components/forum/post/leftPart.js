@@ -10,6 +10,8 @@ import {
   Button,
   Modal,
   CircularProgress,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import CommentPost from "./comments";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,6 +20,7 @@ import {
   Favorite,
   MoreVertOutlined,
 } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 import { postLike, postdislike, comment } from "../../../action/post";
 const style = {
@@ -44,12 +47,15 @@ const LeftPart = ({
   categoryid,
   dateofpost,
 }) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openmenu = Boolean(anchorEl);
   const [check, setcheck] = useState(false);
   const [checktyping, setChecktyping] = useState(false);
 
   const [open, setopen] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // const handleopen = () => setopen(true);
 
@@ -74,6 +80,17 @@ const LeftPart = ({
     comment: "",
     userid: users.result._id,
   });
+
+  const handleEdit = () => {
+    navigate(`/forum/updatepost/${id}`);
+  };
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
   const handleCancel = () => {
     setcheck(false);
@@ -158,7 +175,7 @@ const LeftPart = ({
           </Stack>
         </Box>
       </Modal>
-      <Stack direction="row" spacing={60} mt="30px">
+      <Stack direction="row" spacing={50} mt="30px">
         <Stack direction="row" spacing={1}>
           <Button onMouseOver={() => setopen(true)}>
             <Avatar sx={{ background: "#f57c00" }}>
@@ -175,9 +192,49 @@ const LeftPart = ({
           </Stack>
         </Stack>
         <Stack>
-          <IconButton>
+          <IconButton
+            id="basic-button"
+            aria-controls={openmenu ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={openmenu ? "true" : undefined}
+            onClick={handleClickMenu}
+          >
             <MoreVertOutlined sx={{ color: "white" }} />
           </IconButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={openmenu}
+            onClose={handleCloseMenu}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+            sx={{ color: "black" }}
+          >
+            <MenuItem onClick={handleCloseMenu} className="active">
+              Following Post
+            </MenuItem>
+            <MenuItem onClick={handleCloseMenu} className="active">
+              Mark as Unread
+            </MenuItem>
+            <MenuItem onClick={handleCloseMenu} className="active">
+              Share Link
+            </MenuItem>
+            <MenuItem onClick={handleCloseMenu} className="active">
+              Report Post
+            </MenuItem>
+            <Divider />
+            {users?.result?._id === userid ? (
+              <MenuItem onClick={handleEdit} className="active">
+                Edit Post
+              </MenuItem>
+            ) : (
+              ""
+            )}
+            <MenuItem onClick={handleCloseMenu} className="active">
+              Delete Post
+            </MenuItem>
+          </Menu>
         </Stack>
       </Stack>
       <Typography variant="h5" color="white" mt="20px" mb="10px">

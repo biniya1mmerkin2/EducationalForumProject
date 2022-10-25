@@ -36,6 +36,19 @@ export const getSinglePost = async (req, res) => {
   }
 };
 
+export const updatesinglepost = async (req, res) => {
+  const param = req.params;
+  const userdata = req.body;
+  try {
+    const data = await Post.findByIdAndUpdate(param.id, userdata, {
+      returnDocument: "after",
+    });
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 export const getLatestPost = async (req, res) => {
   try {
     const data = await Post.find({}).sort({ _id: -1 }).limit(3);

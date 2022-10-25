@@ -8,6 +8,7 @@ import {
   postcomment,
   likecomment,
   dislikecomment,
+  updateSinglePost,
 } from "../api/api";
 import {
   ISLOADING,
@@ -44,6 +45,16 @@ export const allPost = (id) => async (dispatch) => {
 export const getSinglePostData = (id) => async (dispatch) => {
   try {
     const { data } = await getSinglePost(id);
+    // console.log(data);
+    dispatch({ type: POST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateSinglePostData = (id, postdata) => async (dispatch) => {
+  try {
+    const { data } = await updateSinglePost(id, postdata);
     dispatch({ type: POST, payload: data });
   } catch (error) {
     console.log(error);

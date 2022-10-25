@@ -9,6 +9,7 @@ import {
   postComment,
   postCommentReaction,
   postCommentReactionremove,
+  updatesinglepost,
 } from "../controllers/post.js";
 
 const post = express.Router();
@@ -18,6 +19,7 @@ post.patch("/reaction/:id", postreaction);
 post.patch("/reactionremove/:id", postreactionremove);
 post.get("/:id", getallpost);
 post.get("/singlepost/:id", getSinglePost);
+post.patch("/singlepost/:id", updatesinglepost);
 post.get("/", getLatestPost);
 post.patch("/comment/:id", postComment);
 post.patch("/commentreaction/:id", postCommentReaction);

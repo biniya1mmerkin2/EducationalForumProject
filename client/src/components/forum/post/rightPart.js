@@ -16,13 +16,9 @@ const RightPart = ({ likes, comments, userid }) => {
   // console.log(user?.result?._id);
   return (
     <Stack mt={3}>
-      {user?.result?._id === userid ? (
-        <Button variant="contained" color="warning" size="large">
-          Edit Post
-        </Button>
-      ) : (
-        ""
-      )}
+      <Button variant="contained" color="warning" size="large">
+        View Profile
+      </Button>
 
       <Button
         variant="outlined"

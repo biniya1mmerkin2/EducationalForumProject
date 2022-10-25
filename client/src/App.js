@@ -20,6 +20,7 @@ import CreatePost from "./components/forum/createpost/createpost";
 import Post from "./components/forum/post/post";
 import RandomPost from "./components/forum/post/randompost";
 import { getLatestPosts } from "./action/post";
+import EditPost from "./components/forum/createpost/editpost";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         <Route path="/profile" element={<PersonalData />} />
         <Route path="/members" element={<MembersIndex />} />
         <Route path="/forum/createpost/:id" element={<CreatePost />} />
+        <Route path="/forum/updatepost/:id" element={<EditPost />} />
         <Route path="/forum/post" element={<Post />} />
         <Route path="/forum/post/:id" element={<RandomPost />} />
       </Routes>
