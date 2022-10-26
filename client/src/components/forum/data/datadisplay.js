@@ -16,7 +16,11 @@ import {
 import SignUp from "../signup/signup";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Comment, DateRange, Favorite } from "@mui/icons-material";
+import {
+  Comment,
+  DateRange,
+  FavoriteBorderOutlined,
+} from "@mui/icons-material";
 
 const DataDisplay = ({ allPosts }) => {
   const [open, setOpen] = useState(false);
@@ -64,13 +68,13 @@ const DataDisplay = ({ allPosts }) => {
             <TableRow>
               <TableCell sx={{ color: "white" }}></TableCell>
               <TableCell sx={{ color: "chocolate" }}>
-                <Favorite color="warning" />
+                <FavoriteBorderOutlined color="error" />
               </TableCell>
               <TableCell sx={{ color: "chocolate" }}>
-                <Comment color="warning" />
+                <Comment sx={{ color: "white" }} />
               </TableCell>
               <TableCell sx={{ color: "chocolate" }}>
-                <DateRange />
+                <DateRange sx={{ color: "white" }} />
               </TableCell>
             </TableRow>
           </TableHead>

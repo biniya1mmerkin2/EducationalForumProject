@@ -47,7 +47,12 @@ const RandomPost = () => {
             />
           </Grid>
           <Grid item lg={3} sm={3}>
-            <RightPart likes={likes} comments={comments} userid={userid} />
+            <RightPart
+              likes={likes}
+              comments={comments}
+              userid={userid}
+              categoryid={categoryid}
+            />
           </Grid>
         </Grid>
       ) : (

@@ -1,4 +1,5 @@
 import Post from "../models/post.js";
+import PostBackUp from "../models/postbackup.js";
 
 export const postdata = async (req, res) => {
   const { title, description, postimage, userid, categoryid } = req.body;
@@ -26,6 +27,16 @@ export const getallpost = async (req, res) => {
   }
 };
 
+export const getSimilarpost = async (req, res) => {
+  const param = req.params;
+  try {
+    const data = await Post.find({ categoryid: param.id }).limit(4);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 export const getSinglePost = async (req, res) => {
   const param = req.params;
   try {
@@ -42,6 +53,38 @@ export const updatesinglepost = async (req, res) => {
   try {
     const data = await Post.findByIdAndUpdate(param.id, userdata, {
       returnDocument: "after",
+    });
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+export const deletesinglepost = async (req, res) => {
+  const param = req.params;
+  try {
+    const data = await Post.findByIdAndDelete(param.id);
+    const {
+      id,
+      title,
+      description,
+      postimage,
+      likes,
+      userid,
+      categoryid,
+      dateofpost,
+      comments,
+    } = data;
+    const result = await PostBackUp.create({
+      _id: id,
+      title: title,
+      description: description,
+      postimage: postimage,
+      likes: likes,
+      userid: userid,
+      categoryid: categoryid,
+      dateofpost: dateofpost,
+      comments: comments,
     });
     res.status(200).json(data);
   } catch (error) {

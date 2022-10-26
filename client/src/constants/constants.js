@@ -13,3 +13,4 @@ export const REMOVEERROR = "REMOVEERROR";
 export const POST = "POST";
 export const ALLPOST = "ALLPOST";
 export const GETLATEST = "GETLATEST";
+export const SIMILARPOST = "SIMILARPOST";

@@ -9,6 +9,8 @@ import {
   likecomment,
   dislikecomment,
   updateSinglePost,
+  deleteSinglePost,
+  getSimilarpost,
 } from "../api/api";
 import {
   ISLOADING,
@@ -18,6 +20,7 @@ import {
   GETLATEST,
   BUTTONLOADING,
   BUTTONLOADINGFINISHED,
+  SIMILARPOST,
 } from "../constants/constants";
 
 export const post = (postdata1) => async (dispatch) => {
@@ -42,6 +45,15 @@ export const allPost = (id) => async (dispatch) => {
   }
 };
 
+export const similarpost = (id) => async (dispatch) => {
+  try {
+    const { data } = await getSimilarpost(id);
+    dispatch({ type: SIMILARPOST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getSinglePostData = (id) => async (dispatch) => {
   try {
     const { data } = await getSinglePost(id);
@@ -56,6 +68,14 @@ export const updateSinglePostData = (id, postdata) => async (dispatch) => {
   try {
     const { data } = await updateSinglePost(id, postdata);
     dispatch({ type: POST, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteSinglePostData = (id) => async (dispatch) => {
+  try {
+    const { data } = await deleteSinglePost(id);
   } catch (error) {
     console.log(error);
   }

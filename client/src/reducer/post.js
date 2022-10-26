@@ -6,6 +6,7 @@ import {
   GETLATEST,
   BUTTONLOADING,
   BUTTONLOADINGFINISHED,
+  SIMILARPOST,
 } from "../constants/constants";
 
 const post = (
@@ -15,6 +16,7 @@ const post = (
     isloading: false,
     latestpost: [],
     buttonisloading: false,
+    similarposts: [],
   },
   action
 ) => {
@@ -33,6 +35,8 @@ const post = (
       return { ...state, buttonisloading: true };
     case BUTTONLOADINGFINISHED:
       return { ...state, buttonisloading: false };
+    case SIMILARPOST:
+      return { ...state, similarposts: action.payload };
     default:
       return state;
   }

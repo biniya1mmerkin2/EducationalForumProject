@@ -14,9 +14,13 @@ export const updateuserinfo = (data, id) =>
   axios.patch(`${url}/user/update/${id}`, data);
 export const postdata = (data) => axios.post(`${url}/post`, data);
 export const getallpost = (id) => axios.get(`${url}/post/${id}`);
+export const getSimilarpost = (id) =>
+  axios.get(`${url}/post/similarpost/${id}`);
 export const getSinglePost = (id) => axios.get(`${url}/post/singlepost/${id}`);
 export const updateSinglePost = (id, data) =>
   axios.patch(`${url}/post/singlepost/${id}`, data);
+export const deleteSinglePost = (id) =>
+  axios.delete(`${url}/post/singlepost/${id}`);
 export const getLatestPost = () => axios.get(`${url}/post`);
 export const like = (id, userid) =>
   axios.patch(`${url}/post/reaction/${id}`, userid);

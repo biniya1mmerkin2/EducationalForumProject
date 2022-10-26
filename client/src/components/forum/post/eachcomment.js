@@ -30,7 +30,7 @@ const EachComment = ({ comment, likes, userid, id, commentid }) => {
     setcommentreaction(true);
     dispatch(likecome(id, { userid: users?.result?._id, commentid }));
   };
-  console.log(commentid);
+  // console.log(commentid);
   return (
     <>
       <Box mt="40px">

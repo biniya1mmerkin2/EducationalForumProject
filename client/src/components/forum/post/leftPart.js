@@ -22,7 +22,12 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
-import { postLike, postdislike, comment } from "../../../action/post";
+import {
+  postLike,
+  postdislike,
+  comment,
+  deleteSinglePostData,
+} from "../../../action/post";
 const style = {
   position: "absolute",
   top: "35%",
@@ -30,6 +35,18 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 300,
   bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  background: "#080808",
+  p: 4,
+};
+const style2 = {
+  position: "absolute",
+  top: "70%",
+  left: "40%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.white",
   border: "2px solid #000",
   boxShadow: 24,
   background: "#080808",
@@ -53,6 +70,7 @@ const LeftPart = ({
   const [checktyping, setChecktyping] = useState(false);
 
   const [open, setopen] = useState(false);
+  const [openmodal, setopenmodal] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -115,6 +133,19 @@ const LeftPart = ({
     setopen(false);
   };
 
+  const handleModalClose = () => {
+    setopenmodal(false);
+  };
+
+  const handleDelete = () => {
+    setAnchorEl(null);
+    setopenmodal(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    dispatch(deleteSinglePostData(id));
+    navigate("/forum");
+  };
   const handlePublish = () => {
     dispatch(comment(commentdata, id));
     setcomment({
@@ -175,6 +206,42 @@ const LeftPart = ({
           </Stack>
         </Box>
       </Modal>
+      <Modal
+        open={openmodal}
+        onClose={handleModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={{ ...style2, background: "white" }}>
+          <Stack>
+            <Typography variant="h6">
+              {" "}
+              Do you really want to delete this post?
+            </Typography>
+            <Stack
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+              mt="10px"
+            >
+              <Button
+                variant="outlined"
+                color="warning"
+                onClick={() => setopenmodal(false)}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={handleDeleteConfirm}
+              >
+                Delete
+              </Button>
+            </Stack>
+          </Stack>
+        </Box>
+      </Modal>
       <Stack direction="row" spacing={50} mt="30px">
         <Stack direction="row" spacing={1}>
           <Button onMouseOver={() => setopen(true)}>
@@ -231,7 +298,7 @@ const LeftPart = ({
             ) : (
               ""
             )}
-            <MenuItem onClick={handleCloseMenu} className="active">
+            <MenuItem onClick={handleDelete} className="active">
               Delete Post
             </MenuItem>
           </Menu>
