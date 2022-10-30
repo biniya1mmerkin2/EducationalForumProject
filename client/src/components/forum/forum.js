@@ -54,7 +54,7 @@ const Forum = () => {
 
         <Stack direction={{ xs: "column", sm: "row", lg: "row" }}>
           {/* <Paper sx={{ background: "#6C3903" }}> */}
-          <Box sx={{ background: "#6C3903", height: 49 }}>
+          {/* <Box sx={{ background: "#6C3903", height: 49 }}>
             <TextField
               size="small"
               variant="filled"
@@ -62,18 +62,24 @@ const Forum = () => {
               label="Search"
               fullWidth
             />
-          </Box>
+          </Box> */}
 
           {/* </Paper> */}
         </Stack>
       </Stack>
       <Divider sx={{ background: "#FBFBEC" }} />
 
-      <Stack justifyContent={"flex-end"} alignItems={"center"}>
-        <Typography margin="auto" variant="h2" color="white">
+      <Stack justifyContent={"flex-end"} alignItems={"center"} mt={3} mb={3}>
+        <Typography margin="auto" variant="h2" color="white" fontWeight={700}>
           Your Forum
         </Typography>
-        <Typography margin="auto" variant="body1" color="white">
+        <Typography
+          margin="auto"
+          variant="body1"
+          color="white"
+          mb={7}
+          fontFamily="cursive"
+        >
           Share your Question to others
         </Typography>
       </Stack>

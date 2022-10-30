@@ -27,6 +27,15 @@ export const getallpost = async (req, res) => {
   }
 };
 
+export const getallposts = async (req, res) => {
+  try {
+    const data = await Post.find({});
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 export const getSimilarpost = async (req, res) => {
   const param = req.params;
   try {

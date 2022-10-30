@@ -12,6 +12,7 @@ import {
   updatesinglepost,
   deletesinglepost,
   getSimilarpost,
+  getallposts,
 } from "../controllers/post.js";
 
 const post = express.Router();
@@ -20,6 +21,7 @@ post.post("/", postdata);
 post.patch("/reaction/:id", postreaction);
 post.patch("/reactionremove/:id", postreactionremove);
 post.get("/:id", getallpost);
+post.get("/getallposts", getallposts);
 post.get("/similarpost/:id", getSimilarpost);
 post.get("/singlepost/:id", getSinglePost);
 post.patch("/singlepost/:id", updatesinglepost);

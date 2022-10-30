@@ -45,3 +45,38 @@ body {
 .hov {
     border-radius: 50%;
 }
+/* 
+members page css  */
+.drop-down {
+    background-color: black;
+    color: white;
+    border: 0px;
+
+}
+
+* {
+
+    margin: 0px;
+}
+
+.two {
+    margin-left: 15px;
+
+}
+
+span {
+    color: rgba(240, 248, 255, 0.715);
+}
+
+.user-image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+
+
+.option {
+    color: white;
+    font-size: 30px;
+}
