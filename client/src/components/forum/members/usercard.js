@@ -1,15 +1,10 @@
 import React from "react";
 import Paper from "@mui/material/Paper";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-// import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { MoreVert } from "@mui/icons-material";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-import { fontFamily } from "@mui/system";
 
-import { object } from "prop-types";
 
 const UserCard = (props) => {
   console.log(props);

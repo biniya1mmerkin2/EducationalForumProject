@@ -60,12 +60,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Body() {
   //dynamic style for grid view and list view
   const users = useSelector((state) => state.user.allUser);
-  const [view, setView] = React.useState({
-    type: true,
-  });
+  const [view, setView] = React.useState(
+    JSON.parse(localStorage.getItem("view")) || false
+  );
 
-  const paperstyle = view.type ? {} : { width: "100%" };
-  const cardsStyles = view.type
+  const paperstyle = view ? {} : { width: "100%" };
+  const cardsStyles = view
     ? {
         padding: "10px",
         marginTop: 3,
@@ -81,11 +81,11 @@ export default function Body() {
 
   //handel view
   function handelGrid() {
-    setView((older) => ({ ...older, type: true }));
+    setView((older) => true);
     console.log("grid");
   }
   function handelList() {
-    setView((older) => ({ ...older, type: false }));
+    setView((older) => false);
     console.log("list");
   }
 
@@ -93,9 +93,9 @@ export default function Body() {
   // const [users, setUsers] = React.useState([]);
 
   // const req = useSelector((state) => state.user.allUser);
-  // React.useEffect(() => {
-  //   setUsers(req);
-  // }, []);
+  React.useEffect(() => {
+    localStorage.setItem("view", JSON.stringify(view));
+  }, [view]);
 
   //handel Search
 
