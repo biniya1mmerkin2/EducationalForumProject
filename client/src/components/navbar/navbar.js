@@ -48,7 +48,7 @@ const NavBar = () => {
     >
       <Toolbar>
         <Stack
-          spacing={{ md: 45, lg: 90 }}
+          spacing={{ md: 45, sm: 10, lg: 90 }}
           direction={{ xs: "column", sm: "row", lg: "row" }}
           mt={10}
           mb={10}
@@ -91,7 +91,7 @@ const NavBar = () => {
                 Members
               </Link>
 
-              <Link
+              {/* <Link
                 className="navlink"
                 href="/contact"
                 color={pathname === "/contact" ? "GrayText" : "white"}
@@ -99,14 +99,25 @@ const NavBar = () => {
                 variant="inherit"
               >
                 SignUp
-              </Link>
+              </Link> */}
             </Stack>
             <Stack>
               {user?.result && (
                 <IconButton onClick={handleMenu} size="small" sx={{ mt: 1 }}>
-                  <Avatar sx={{ background: "#f57c00" }}>
-                    {user?.result?.name.charAt(0).toUpperCase()}
-                  </Avatar>{" "}
+                  {user?.result?.profilePic ? (
+                    <Avatar>
+                      <img
+                        src={user?.result?.profilePic}
+                        alt="profileimage"
+                        width={50}
+                        height={50}
+                      />
+                    </Avatar>
+                  ) : (
+                    <Avatar sx={{ background: "#f57c00" }}>
+                      {user?.result?.name.charAt(0).toUpperCase()}
+                    </Avatar>
+                  )}
                   <ExpandMoreOutlined color="warning" />
                 </IconButton>
               )}

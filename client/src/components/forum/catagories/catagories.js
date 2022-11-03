@@ -32,7 +32,10 @@ const Catagories = () => {
         <Grid container spacing={3}>
           {posts.map((item) => (
             <Grid item sm={12} md={6} lg={6} xs={12} key={item._id}>
-              <Card elevation={6} sx={{ border: 0.5, borderColor: "#ffffff" }}>
+              <Card
+                elevation={6}
+                sx={{ border: 0.5, borderColor: "#ffffff", borderRadius: 10 }}
+              >
                 <CardMedia
                   component="img"
                   height="140"

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postSchema = mongoose.Schema({
+const postbackupSchema = mongoose.Schema({
   title: String,
   description: String,
   postimage: String,
@@ -19,5 +19,5 @@ const postSchema = mongoose.Schema({
   dateofpost: { type: Date, default: Date.now() },
 });
 
-const Post = mongoose.model("postdata", postSchema);
-export default Post;
+const PostBackUp = mongoose.model("postbackupdata", postbackupSchema);
+export default PostBackUp;

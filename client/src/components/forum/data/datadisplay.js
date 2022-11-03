@@ -16,6 +16,11 @@ import {
 import SignUp from "../signup/signup";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  Comment,
+  DateRange,
+  FavoriteBorderOutlined,
+} from "@mui/icons-material";
 
 const DataDisplay = ({ allPosts }) => {
   const [open, setOpen] = useState(false);
@@ -62,9 +67,15 @@ const DataDisplay = ({ allPosts }) => {
           <TableHead>
             <TableRow>
               <TableCell sx={{ color: "white" }}></TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Likes</TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Comments</TableCell>
-              <TableCell sx={{ color: "chocolate" }}>Date</TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <FavoriteBorderOutlined color="error" />
+              </TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <Comment sx={{ color: "white" }} />
+              </TableCell>
+              <TableCell sx={{ color: "chocolate" }}>
+                <DateRange sx={{ color: "white" }} />
+              </TableCell>
             </TableRow>
           </TableHead>
           {allPosts.length === 0 ? (
@@ -84,7 +95,7 @@ const DataDisplay = ({ allPosts }) => {
                           className="active"
                           variant="inherit"
                           underline="none"
-                          color={"#b3b0ae"}
+                          color="chocolate"
                           key={item._id}
                         >
                           {item.email}
@@ -95,7 +106,7 @@ const DataDisplay = ({ allPosts }) => {
                     )}
                     <br />
                     <Link
-                      href="#"
+                      href={`/forum/post/${items._id}`}
                       className="active"
                       variant="inherit"
                       underline="none"
